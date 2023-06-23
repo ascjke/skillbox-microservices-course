@@ -1,0 +1,475 @@
+2023-06-23 11:45:05,157 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 564972 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:45:05,168 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:45:05,170 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:45:06,181 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:45:06,236 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 989 ms
+2023-06-23 11:45:07,383 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'openAPIConfig': Injection of autowired dependencies failed
+2023-06-23 11:45:07,406 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-06-23 11:45:07,416 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'openAPIConfig': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:489) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) [spring-boot-3.1.1.jar:3.1.1]
+	at ru.borisov.users.UsersApplication.main(UsersApplication.java:12) [main/:?]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'server_ip' in value "${server_ip}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:711) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:694) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:483) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 17 more
+2023-06-23 11:45:49,465 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 565384 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:45:49,469 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:45:49,470 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:45:50,547 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:45:50,595 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1100 ms
+2023-06-23 11:45:51,563 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'openAPIConfig': Injection of autowired dependencies failed
+2023-06-23 11:45:51,588 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-06-23 11:45:51,596 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'openAPIConfig': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:489) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) [spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) [spring-boot-3.1.1.jar:3.1.1]
+	at ru.borisov.users.UsersApplication.main(UsersApplication.java:10) [main/:?]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'server_ip' in value "${server_ip}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:711) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:694) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:483) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 17 more
+2023-06-23 11:46:23,619 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 565740 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:46:23,622 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:46:23,623 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:46:24,254 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:46:24,302 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 661 ms
+2023-06-23 11:46:25,579 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 11:46:25,784 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 11:46:25,791 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.368 seconds (process running for 2.751)
+2023-06-23 11:46:53,397 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 11:46:53,448 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 11:52:33,510 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 568458 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:52:33,516 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:52:33,517 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:52:34,797 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:52:34,866 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1306 ms
+2023-06-23 11:52:36,444 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 11:52:36,653 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 11:52:36,659 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.558 seconds (process running for 4.224)
+2023-06-23 11:52:43,277 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 568824 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:52:43,282 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:52:43,284 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:52:44,526 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:52:44,575 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1260 ms
+2023-06-23 11:52:45,759 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 11:52:45,951 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 11:52:45,956 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.994 seconds (process running for 3.39)
+2023-06-23 11:52:58,014 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 569167 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:52:58,019 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:52:58,021 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:52:58,685 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:52:58,731 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 677 ms
+2023-06-23 11:52:59,894 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 11:53:00,107 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 11:53:00,113 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.346 seconds (process running for 2.898)
+2023-06-23 11:53:13,764 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-9] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 11:53:13,793 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-9] Добавлен новый пользователь: string 
+2023-06-23 11:53:25,319 ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] [http-nio-8081-exec-10] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: CommonException(code=USER_NOT_FOUND, message=Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f8 не существует!, httpStatus=400 BAD_REQUEST)] with root cause
+ru.borisov.users.exception.CommonException: Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f8 не существует!
+	at ru.borisov.users.service.UserServiceImpl.lambda$getUserById$0(UserServiceImpl.java:55) ~[main/:?]
+	at java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]
+	at ru.borisov.users.service.UserServiceImpl.getUserById(UserServiceImpl.java:55) ~[main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.10.jar:6.0.10]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704) ~[spring-aop-6.0.10.jar:6.0.10]
+	at ru.borisov.users.service.UserServiceImpl$$SpringCGLIB$$0.getUserById(<generated>) ~[main/:?]
+	at ru.borisov.users.controller.api.UserController.getUserById(UserController.java:33) ~[main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.10.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.10.jar:6.0.10]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.10.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.10.jar:6.0.10]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-10.1.10.jar:10.1.10]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+2023-06-23 11:57:39,052 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 570261 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 11:57:39,062 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 11:57:39,064 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 11:57:40,082 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 11:57:40,125 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1019 ms
+2023-06-23 11:57:41,241 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 11:57:41,433 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 11:57:41,439 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.768 seconds (process running for 3.266)
+2023-06-23 11:57:58,645 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] common error: CommonException(code=USER_NOT_FOUND, message=Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f8 не существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:05:42,461 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 572319 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:05:42,466 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:05:42,467 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:05:44,106 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:05:44,193 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1696 ms
+2023-06-23 12:05:45,554 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:05:45,757 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:05:45,764 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.718 seconds (process running for 4.258)
+2023-06-23 12:08:50,756 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 573231 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:08:50,761 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:08:50,762 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:08:52,228 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:08:52,325 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1519 ms
+2023-06-23 12:08:53,715 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:08:53,938 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:08:53,944 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.522 seconds (process running for 4.086)
+2023-06-23 12:09:15,561 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 12:09:15,611 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 12:09:15,634 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 12:09:15,639 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 12:09:16,775 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-4] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 12:09:16,776 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-4] Добавлен новый пользователь: string 
+2023-06-23 12:09:16,777 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-4] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 12:09:16,779 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-4] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 12:12:33,513 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 574210 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:12:33,526 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:12:33,527 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:12:34,628 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:12:34,697 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1118 ms
+2023-06-23 12:12:36,015 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:12:36,225 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:12:36,231 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.28 seconds (process running for 4.149)
+2023-06-23 12:12:50,184 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-9] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 12:12:50,282 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-9] common error: CommonException(code=LOGIN_BUSY, message=Пользовател с ником string уже существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:13:12,424 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-6] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 12:13:12,426 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-6] common error: CommonException(code=LOGIN_BUSY, message=Пользовател с ником string уже существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:13:16,959 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-5] Сохраняем нового пользователя. Тело запроса: CreateUserRequest(username=string1, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 12:13:16,973 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-5] Добавлен новый пользователь: string1 
+2023-06-23 12:19:15,732 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 575716 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:19:15,744 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:19:15,746 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:19:17,211 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:19:17,262 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1443 ms
+2023-06-23 12:19:18,664 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:19:18,862 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:19:18,868 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.574 seconds (process running for 4.434)
+2023-06-23 12:19:43,537 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-10] common error: CommonException(code=USER_NOT_FOUND, message=Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f8 не существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:19:55,124 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: relation "_user" does not exist
+  Position: 8
+2023-06-23 12:19:55,128 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: relation "_user" does not exist
+  Position: 8] [UPDATE _user SET deleted = true WHERE id=?]; SQL [UPDATE _user SET deleted = true WHERE id=?]
+2023-06-23 12:20:49,082 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 576336 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:20:49,090 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:20:49,093 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:20:50,488 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:20:50,541 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1394 ms
+2023-06-23 12:20:52,067 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:20:52,265 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:20:52,271 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.743 seconds (process running for 4.653)
+2023-06-23 12:20:55,220 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] common error: CommonException(code=USER_NOT_FOUND, message=Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f7 не существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:21:27,817 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-2] common error: CommonException(code=USER_NOT_FOUND, message=Пользователя с id=046e2674-9e01-4f15-8928-df740e46e4f7 не существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 12:32:19,995 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 580408 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:32:19,999 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:32:20,000 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:32:20,669 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:32:20,718 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 696 ms
+2023-06-23 12:32:21,949 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:32:22,139 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:32:22,145 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.356 seconds (process running for 2.84)
+2023-06-23 12:34:03,045 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-4] ERROR: relation "_user" does not exist
+  Position: 8
+2023-06-23 12:34:03,051 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-4] internal server error: org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement [ERROR: relation "_user" does not exist
+  Position: 8] [UPDATE _user SET deleted = true WHERE id=?]; SQL [UPDATE _user SET deleted = true WHERE id=?]
+2023-06-23 12:35:12,684 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 581224 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 12:35:12,692 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 12:35:12,694 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 12:35:13,593 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 12:35:13,644 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 900 ms
+2023-06-23 12:35:14,843 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 12:35:15,043 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 12:35:15,049 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.821 seconds (process running for 3.411)
+2023-06-23 14:33:51,550 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 599319 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 14:33:51,568 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 14:33:51,569 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 14:33:52,441 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 14:33:52,490 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 885 ms
+2023-06-23 14:33:53,873 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 14:33:54,069 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 14:33:54,074 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.157 seconds (process running for 4.038)
+2023-06-23 14:36:05,810 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-2] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 14:36:05,850 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-2] Добавлен новый пользователь: string 
+2023-06-23 14:36:05,865 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-2] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 14:36:05,871 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-2] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 14:38:39,780 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 600411 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 14:38:39,786 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 14:38:39,787 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 14:38:41,007 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 14:38:41,057 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1243 ms
+2023-06-23 14:38:42,312 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 14:38:42,499 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 14:38:42,504 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.299 seconds (process running for 4.052)
+2023-06-23 14:38:47,326 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 14:38:47,406 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 14:38:47,419 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 14:38:47,425 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 14:41:16,306 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 601173 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 14:41:16,313 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 14:41:16,317 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 14:41:17,243 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 14:41:17,288 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 928 ms
+2023-06-23 14:41:18,507 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 14:41:18,700 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 14:41:18,706 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.777 seconds (process running for 3.326)
+2023-06-23 14:41:23,769 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 14:41:23,846 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 14:41:23,858 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 14:41:23,863 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:15:40,689 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 608569 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:15:40,700 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:15:40,701 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:15:42,196 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:15:42,246 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1499 ms
+2023-06-23 15:15:43,682 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:15:43,872 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:15:43,878 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.633 seconds (process running for 4.588)
+2023-06-23 15:15:55,212 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:15:55,246 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.createQuery(String, java.lang.Class)" because "this.entityManager" is null
+2023-06-23 15:18:44,422 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 609550 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:18:44,426 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:18:44,427 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:18:45,023 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:18:45,066 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 617 ms
+2023-06-23 15:18:46,248 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:18:46,430 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:18:46,435 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.224 seconds (process running for 2.758)
+2023-06-23 15:18:53,058 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:18:53,079 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.createQuery(String, java.lang.Class)" because "this.entityManager" is null
+2023-06-23 15:21:20,107 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 610654 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:21:20,114 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:21:20,115 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:21:20,923 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:21:20,969 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 816 ms
+2023-06-23 15:21:22,177 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:21:22,359 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:21:22,365 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.602 seconds (process running for 3.203)
+2023-06-23 15:21:27,818 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:21:28,010 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:21:28,026 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:21:28,032 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:27:57,743 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 612028 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:27:57,763 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:27:57,765 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:27:59,177 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:27:59,238 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1392 ms
+2023-06-23 15:28:00,469 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:28:00,652 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:28:00,657 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.409 seconds (process running for 4.23)
+2023-06-23 15:28:09,212 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:28:09,318 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:28:09,332 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:28:09,337 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:32:44,315 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 613229 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:32:44,324 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:32:44,329 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:32:45,775 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:32:45,870 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1489 ms
+2023-06-23 15:32:47,407 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:32:47,594 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:32:47,600 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.673 seconds (process running for 4.142)
+2023-06-23 15:32:54,019 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:32:54,086 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:32:54,099 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:32:54,105 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:33:31,748 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 613713 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:33:31,752 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:33:31,753 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:33:32,356 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:33:32,410 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 639 ms
+2023-06-23 15:33:33,733 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:33:33,914 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:33:33,919 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.346 seconds (process running for 2.733)
+2023-06-23 15:33:44,487 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:33:44,552 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:33:44,565 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:33:44,571 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:34:21,550 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 614193 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:34:21,554 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:34:21,554 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:34:22,152 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:34:22,200 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 626 ms
+2023-06-23 15:34:23,594 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:34:23,781 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:34:23,787 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.412 seconds (process running for 2.8)
+2023-06-23 15:34:29,166 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:34:29,228 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:34:29,241 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:34:29,246 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:36:02,896 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 614799 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:36:02,900 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:36:02,900 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:36:03,485 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:36:03,538 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 619 ms
+2023-06-23 15:36:04,849 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:36:05,038 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:36:05,043 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.336 seconds (process running for 2.749)
+2023-06-23 15:36:09,118 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:36:09,186 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Добавлен новый пользователь: string 
+2023-06-23 15:36:09,200 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.
+2023-06-23 15:36:09,205 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "uk_nlcolwbx8ujaen5h0u2kr2bn2"
+  Detail: Key (username)=(string) already exists.] [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users_scheme._user (bio,birth_date,city,created_at,deleted,email,first_name,last_name,male,middle_name,password_hash,phone,profile_image,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [uk_nlcolwbx8ujaen5h0u2kr2bn2]
+2023-06-23 15:38:26,822 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 615559 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:38:26,825 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:38:26,826 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:38:27,407 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:38:27,455 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 611 ms
+2023-06-23 15:38:28,574 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:38:28,758 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:38:28,763 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.119 seconds (process running for 2.497)
+2023-06-23 15:38:35,724 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:38:35,774 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: column u.username does not exist
+  Position: 39
+2023-06-23 15:38:35,781 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [SELECT COUNT(u) > 0 FROM User u WHERE u.username = ?] [ERROR: column u.username does not exist
+  Position: 39] [n/a]; SQL [n/a]
+2023-06-23 15:39:20,365 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 616038 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:39:20,368 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:39:20,369 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:39:20,957 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:39:21,002 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 614 ms
+2023-06-23 15:39:22,173 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:39:22,359 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:39:22,365 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.187 seconds (process running for 2.628)
+2023-06-23 15:39:25,324 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:39:25,370 ERROR o.h.e.j.s.SqlExceptionHelper [http-nio-8081-exec-1] ERROR: relation "_user" does not exist
+  Position: 26
+2023-06-23 15:39:25,377 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] internal server error: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [SELECT COUNT(u) > 0 FROM _user u WHERE u.username = ?] [ERROR: relation "_user" does not exist
+  Position: 26] [n/a]; SQL [n/a]
+2023-06-23 15:39:57,797 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 616464 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 15:39:57,801 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 15:39:57,802 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 15:39:58,396 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 15:39:58,440 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 620 ms
+2023-06-23 15:39:59,608 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 15:39:59,794 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 15:39:59,799 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.178 seconds (process running for 2.575)
+2023-06-23 15:40:05,612 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-1] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:40:05,667 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-1] common error: CommonException(code=LOGIN_BUSY, message=Пользователь с ником string уже существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 15:41:19,689 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-2] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string1, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:41:19,690 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8081-exec-2] common error: CommonException(code=LOGIN_BUSY, message=Пользователь с ником string1 уже существует!, httpStatus=400 BAD_REQUEST)
+2023-06-23 15:41:24,511 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-3] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=string2, email=string, passwordHash=string, lastName=string, firstName=string, middleName=string, male=MALE, birthDate=2023-06-23, city=string, profileImage=string, bio=string, hardSkills=[string], phone=string) 
+2023-06-23 15:41:24,525 INFO r.b.u.s.UserServiceImpl [http-nio-8081-exec-3] Добавлен новый пользователь: string2 
+2023-06-23 16:04:11,651 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 620632 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-06-23 16:04:11,656 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-06-23 16:04:11,658 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-06-23 16:04:12,881 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2023-06-23 16:04:12,948 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1260 ms
+2023-06-23 16:04:14,447 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-23 16:04:14,677 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2023-06-23 16:04:14,685 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.301 seconds (process running for 3.865)
+2023-06-23 16:39:43,337 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: CreateUserRequest(username=ascjke, email=ascjke@mail.ru, passwordHash=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO, lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, hardSkills=[java, docker], phone=89141002304567) 
+2023-06-23 16:39:43,352 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: ascjke 
