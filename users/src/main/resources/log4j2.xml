@@ -33,6 +33,11 @@
             <AppenderRef ref="LogToConsole"/>
         </Logger>
 
+        <Logger name="org.flywaydb" level="info" additivity="false">
+            <AppenderRef ref="LogToRollingRandomAccessFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+
         <Root level="error">
             <AppenderRef ref="LogToRollingRandomAccessFile"/>
             <AppenderRef ref="LogToConsole"/>
