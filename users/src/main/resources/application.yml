@@ -12,13 +12,27 @@ spring:
       ddl-auto: validate
     show-sql: true
     properties:
-      hibernate.default_schema: users_scheme
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
       hibernate:
         format_sql: true
+        default_schema: users_scheme
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: jcache
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  flyway:
+  liquibase:
     enabled: true
-    schemas: users_scheme
+    default-schema: users_scheme
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/Skillagram
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
 server_ip: ${SERVER_IP:localhost}

@@ -1,17 +1,17 @@
 package ru.borisov.users.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -27,7 +27,6 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")
     @EqualsAndHashCode.Include
     private UUID id;
@@ -54,8 +53,15 @@ public class User {
     private String profileImage;
     private String bio;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> hardSkills;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
+    @BatchSize(size = 10)
+    @JoinTable(
+            name = "user_skill",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private Set<Skill> skills = new HashSet<>();
 
     private String phone;
 
@@ -65,13 +71,13 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
-    private List<Follower> followers;
+    private Set<Follower> followers = new HashSet<>();
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
-    private List<Following> followings;
+    private Set<Following> followings = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;

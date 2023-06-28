@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
                 .city(request.getCity())
                 .profileImage(request.getProfileImage())
                 .bio(request.getBio())
-                .hardSkills(request.getHardSkills())
                 .phone(request.getPhone())
                 .build();
 
@@ -73,7 +72,6 @@ public class UserServiceImpl implements UserService {
         user.setCity(request.getCity());
         user.setProfileImage(request.getProfileImage());
         user.setBio(request.getBio());
-        user.setHardSkills(request.getHardSkills());
         user.setPhone(request.getPhone());
 
         user = userRepository.save(user);
@@ -100,7 +98,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ApiResponse removeUser(UUID uuid) {
+    public ApiResponse removeUserById(UUID uuid) {
 
         User user = getUserById(uuid);
         userRepository.delete(user);

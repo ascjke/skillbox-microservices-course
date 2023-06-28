@@ -1,0 +1,199 @@
+databaseChangeLog:
+  - changeSet:
+      id: 000-1
+      author: zakhar
+      changes:
+        - createTable:
+            tableName: _user
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: email
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(64)
+              - column:
+                  name: first_name
+                  type: varchar(64)
+              - column:
+                  name: middle_name
+                  type: varchar(64)
+              - column:
+                  name: male
+                  type: varchar(64)
+                  constraints:
+                    checkConstraint: male in ('MALE','FEMALE')
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  name: city
+                  type: varchar(64)
+              - column:
+                  name: profile_image
+                  type: varchar(255)
+              - column:
+                  name: bio
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(32)
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+              - column:
+                  name: updated_at
+                  type: timestamp(6)
+
+  - changeSet:
+      id: 000-2
+      author: zakhar
+      changes:
+        - createTable:
+            tableName: follower
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+
+  - changeSet:
+      id: 000-3
+      author: zakhar
+      changes:
+        - createTable:
+            tableName: following
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+
+  - changeSet:
+      id: 000-4
+      author: zakhar
+      changes:
+        - createTable:
+            tableName: skill
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: skill_type
+                  type: varchar(32)
+                  constraints:
+                    checkConstraint: skill_type in ('HARD_SKILL','SOFT_SKILL')
+              - column:
+                  name: title
+                  type: varchar(64)
+                  constraints:
+                    unique: true
+
+  - changeSet:
+      id: 000-5
+      author: zakhar
+      changes:
+        - createTable:
+            tableName: user_skill
+            columns:
+              - column:
+                  name: skill_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+
+  - changeSet:
+      id: 000-6
+      author: zakhar
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: follower
+            baseColumnNames: user_id
+            referencedTableName: _user
+            referencedColumnNames: id
+            constraintName: FKt2h2346u92r18ijwxfg6gir6k
+
+  - changeSet:
+      id: 000-7
+      author: zakhar
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: following
+            baseColumnNames: user_id
+            referencedTableName: _user
+            referencedColumnNames: id
+            constraintName: FK4kpme8qo5uu1f7o71wk10lnxf
+
+  - changeSet:
+      id: 000-8
+      author: zakhar
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: user_skill
+            baseColumnNames: skill_id
+            referencedTableName: skill
+            referencedColumnNames: id
+            constraintName: FKj53flyds4vknyh8llw5d7jdop
+
+  - changeSet:
+      id: 000-9
+      author: zakhar
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: user_skill
+            baseColumnNames: user_id
+            referencedTableName: _user
+            referencedColumnNames: id
+            constraintName: FKqsxejk0f9hr4jpdoygwoyn6qg

@@ -27,20 +27,20 @@ public class UserController {
                 .build(), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{uuid}")
+    @PutMapping("/{id}")
     public ResponseEntity<Response> editUser(@RequestBody EditUserRequest request,
-                                             @PathVariable UUID uuid) {
+                                             @PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(userService.editUser(request, uuid))
+                .data(userService.editUser(request, id))
                 .build(), HttpStatus.OK);
     }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<Response> getUserById(@PathVariable UUID uuid) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> getUserById(@PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(userService.getUserById(uuid))
+                .data(userService.getUserById(id))
                 .build(), HttpStatus.OK);
     }
 
@@ -52,11 +52,11 @@ public class UserController {
                 .build(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{uuid}")
-    public ResponseEntity<Response> removeUser(@PathVariable UUID uuid) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> removeUserById(@PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(userService.removeUser(uuid))
+                .data(userService.removeUserById(id))
                 .build(), HttpStatus.OK);
     }
 }

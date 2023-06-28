@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-1
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_user_male
+            tableName: _user
+            columns:
+              - column:
+                  name: male
+            indexType: hash
+
+  - changeSet:
+      id: 001-2
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_user_deleted
+            tableName: _user
+            columns:
+              - column:
+                  name: deleted
+            indexType: hash
+
+  - changeSet:
+      id: 001-3
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_btree_user_city
+            tableName: _user
+            columns:
+              - column:
+                  name: city
+            indexType: btree
+
+  - changeSet:
+      id: 001-4
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_btree_user_username
+            tableName: _user
+            columns:
+              - column:
+                  name: username
+            indexType: btree
+
+  - changeSet:
+      id: 001-5
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_skill_skill_type
+            tableName: skill
+            columns:
+              - column:
+                  name: skill_type
+            indexType: hash
+
+#  Foreign keys
+  - changeSet:
+      id: 001-6
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_follower_user_id
+            tableName: follower
+            columns:
+              - column:
+                  name: user_id
+            indexType: hash
+
+  - changeSet:
+      id: 001-7
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_following_user_id
+            tableName: following
+            columns:
+              - column:
+                  name: user_id
+            indexType: hash
