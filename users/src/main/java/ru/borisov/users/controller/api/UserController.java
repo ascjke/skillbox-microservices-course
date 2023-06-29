@@ -3,6 +3,7 @@ package ru.borisov.users.controller.api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.borisov.users.controller.request.CreateUserRequest;
 import ru.borisov.users.controller.request.EditUserRequest;
@@ -13,7 +14,7 @@ import ru.borisov.users.service.UserServiceImpl;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -28,6 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('client_user')")
     public ResponseEntity<Response> editUser(@RequestBody EditUserRequest request,
                                              @PathVariable UUID id) {
 
@@ -37,6 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('client_user')")
     public ResponseEntity<Response> getUserById(@PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
@@ -45,6 +48,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('client_admin', 'client_user')")
     public ResponseEntity<Response> getAllUsers() {
 
         return new ResponseEntity<>(SuccessResponse.builder()
@@ -53,6 +57,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('client_admin')")
     public ResponseEntity<Response> removeUserById(@PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()

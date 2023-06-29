@@ -1,9 +1,12 @@
 package ru.borisov.users.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +26,7 @@ public class OpenAPIConfig {
     @Bean
     public OpenAPI customOpenAPI() {
 
+        final String securitySchemeName = "bearerAuth";
         final String url = "http://" + ip + ":" + port;
 
         return new OpenAPI()
@@ -41,6 +45,17 @@ public class OpenAPIConfig {
                         new Server()
                                 .url("http://10.50.50.99:8080")
                                 .description("Address for frontend developer")
-                ));
+                ))
+                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                .components(
+                        new Components()
+                                .addSecuritySchemes(securitySchemeName,
+                                        new SecurityScheme()
+                                                .name(securitySchemeName)
+                                                .type(SecurityScheme.Type.HTTP)
+                                                .scheme("bearer")
+                                                .bearerFormat("JWT")
+                                )
+                );
     }
 }

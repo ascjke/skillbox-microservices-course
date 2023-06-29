@@ -3,6 +3,7 @@ package ru.borisov.users.exception.error;
 public enum Code {
 
     BAD_REQUEST,
+    ACCESS_DENIED,
     CONFLICT,
     USER_NOT_FOUND,
     REQUEST_VALIDATION_ERROR,

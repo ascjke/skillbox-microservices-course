@@ -1,7 +1,11 @@
 server:
   port: 8082
+  servlet:
+    context-path: /api
 
 spring:
+  application:
+    name: users-service
   datasource:
     url: jdbc:postgresql://localhost:5432/users
     username: postgres
@@ -35,4 +39,13 @@ spring:
           issuer-uri: http://localhost:8080/realms/Skillagram
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
+log4j2:
+  contextSelector: org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+
 server_ip: ${SERVER_IP:localhost}
+
+jwt:
+  auth:
+    converter:
+      resource-id: users-api
+      principal-attribute: preferred_username
