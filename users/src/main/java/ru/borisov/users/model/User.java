@@ -7,10 +7,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.*;
+import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,7 +34,6 @@ public class User {
     @EqualsAndHashCode.Include
     private UUID id;
 
-    @Column(unique = true)
     @NotNull
     private String username;
 
@@ -72,12 +73,14 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
+//    @Where(clause = "confirmed = true")
     private Set<Follower> followers = new HashSet<>();
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
+//    @Where(clause = "confirmed = true")
     private Set<Following> followings = new HashSet<>();
 
     @CreationTimestamp
@@ -85,4 +88,48 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @Transient
+    public long getFollowersCount() {
+        return followers.stream()
+                .filter(follower -> follower.isConfirmed())
+                .count();
+    }
+
+    @Transient
+    public long getFollowingCount() {
+        return followings.stream()
+                .filter(following -> following.isConfirmed())
+                .count();
+    }
+
+    public boolean isInfoUpdated(UpdateUserInfoRequest request) {
+        if (!Objects.equals(request.getLastName(), this.lastName)) {
+            return true;
+        }
+        if (!Objects.equals(request.getFirstName(), this.firstName)) {
+            return true;
+        }
+        if (!Objects.equals(request.getMiddleName(), this.middleName)) {
+            return true;
+        }
+        if (!Objects.equals(request.getMale(), this.male)) {
+            return true;
+        }
+        if (!Objects.equals(request.getBirthDate(), this.birthDate)) {
+            return true;
+        }
+        if (!Objects.equals(request.getCity(), this.city)) {
+            return true;
+        }
+        if (!Objects.equals(request.getProfileImage(), this.profileImage)) {
+            return true;
+        }
+        if (!Objects.equals(request.getBio(), this.bio)) {
+            return true;
+        }
+
+        // Если все поля совпадают, возвращаем false
+        return false;
+    }
 }

@@ -59,9 +59,33 @@ databaseChangeLog:
                   name: skill_type
             indexType: hash
 
-#  Foreign keys
   - changeSet:
       id: 001-6
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_following_confirmed
+            tableName: following
+            columns:
+              - column:
+                  name: confirmed
+            indexType: hash
+
+  - changeSet:
+      id: 001-7
+      author: zakhar
+      changes:
+        - createIndex:
+            indexName: idx_hash_follower_confirmed
+            tableName: follower
+            columns:
+              - column:
+                  name: confirmed
+            indexType: hash
+
+#  Foreign keys
+  - changeSet:
+      id: 001-8
       author: zakhar
       changes:
         - createIndex:
@@ -73,7 +97,7 @@ databaseChangeLog:
             indexType: hash
 
   - changeSet:
-      id: 001-7
+      id: 001-9
       author: zakhar
       changes:
         - createIndex:

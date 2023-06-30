@@ -5,11 +5,10 @@ import lombok.Data;
 import ru.borisov.users.model.Male;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @Builder
-public class EditUserRequest {
+public class UpdateUserInfoRequest {
 
     private String lastName;
     private String firstName;
@@ -19,6 +18,5 @@ public class EditUserRequest {
     private String city;
     private String profileImage;
     private String bio;
-    private List<String> hardSkills;
     private String phone;
 }

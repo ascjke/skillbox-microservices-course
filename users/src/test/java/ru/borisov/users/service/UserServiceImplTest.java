@@ -3,7 +3,8 @@ package ru.borisov.users.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import ru.borisov.users.controller.request.CreateUserRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.model.Male;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.UserRepository;
@@ -23,11 +24,12 @@ class UserServiceImplTest {
         // given
         UserRepository userRepository = Mockito.mock(UserRepository.class);
         ValidationUtils validationUtils = Mockito.mock(ValidationUtils.class);
+        PasswordEncoder passwordEncoder = Mockito.mock(PasswordEncoder.class);
 
-        CreateUserRequest createUserRequest = CreateUserRequest.builder()
+        RegisterUserRequest registerUserRequest = RegisterUserRequest.builder()
                 .username("ascjke")
                 .email("ascjke@mail.ru")
-                .passwordHash("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
+                .password("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
@@ -52,7 +54,6 @@ class UserServiceImplTest {
                 .city("Якутск")
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
                 .bio("nothing to say")
-                .hardSkills(List.of("java", "docker"))
                 .phone("89141002304567")
                 .build();
 
@@ -70,16 +71,15 @@ class UserServiceImplTest {
                         .city("Якутск")
                         .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
                         .bio("nothing to say")
-                        .hardSkills(List.of("java", "docker"))
                         .phone("89141002304567")
                         .build();
 
-        doNothing().when(validationUtils).validateRequest(createUserRequest);
+        doNothing().when(validationUtils).validateRequest(registerUserRequest);
         Mockito.when(userRepository.save(user)).thenReturn(savedUser);
-        UserService userService = new UserServiceImpl(userRepository, validationUtils);
+        UserService userService = new UserServiceImpl(userRepository, validationUtils, passwordEncoder);
 
         //when
-        User result = userService.createUser(createUserRequest);
+        User result = userService.registerUser(registerUserRequest);
 
         //then
         Assertions.assertEquals(savedUser, result);

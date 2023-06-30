@@ -3,19 +3,25 @@ package ru.borisov.users.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.borisov.users.controller.request.CreateUserRequest;
-import ru.borisov.users.controller.request.EditUserRequest;
+import ru.borisov.users.controller.request.RegisterUserRequest;
+import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.error.Code;
+import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Following;
+import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -24,26 +30,20 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ValidationUtils validationUtils;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
-    public User createUser(CreateUserRequest request) {
+    public User registerUser(RegisterUserRequest request) {
 
         log.info("Запрос на создание нового пользователя. Тело запроса: {} ", request::toString);
         validationUtils.validateRequest(request);
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .passwordHash(request.getPasswordHash())
-                .lastName(request.getLastName())
-                .firstName(request.getFirstName())
-                .middleName(request.getMiddleName())
-                .male(request.getMale())
-                .birthDate(request.getBirthDate())
-                .city(request.getCity())
-                .profileImage(request.getProfileImage())
-                .bio(request.getBio())
-                .phone(request.getPhone())
+                .passwordHash(passwordEncoder.encode(request.getPassword()))
+                .followers(new HashSet<>())
+                .followings(new HashSet<>())
                 .build();
 
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -59,11 +59,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User editUser(EditUserRequest request, UUID uuid) {
+    @Transactional
+    public User updateUserInfo(UpdateUserInfoRequest request, UUID uuid) {
 
-        log.info("Запрос на обновление данных пользователя. Тело запроса: {} ", request::toString);
+        log.info("Запрос на обновление данных пользователя c id={}. Тело запроса: {} ", uuid::toString, request::toString);
 
         User user = getUserById(uuid);
+
+        if (!user.isInfoUpdated(request)) {
+            log.info("Запрос не обновил данные пользователя");
+            return user;
+        }
+
         user.setLastName(request.getLastName());
         user.setFirstName(request.getFirstName());
         user.setMiddleName(request.getMiddleName());
@@ -78,6 +85,13 @@ public class UserServiceImpl implements UserService {
         log.info("Данные пользователя {} обновлены", user::getUsername);
 
         return user;
+    }
+
+    @Override
+    public Skill addSkillToUser(UpdateUserInfoRequest request, UUID id) {
+
+
+        return null;
     }
 
     @Override
@@ -102,7 +116,23 @@ public class UserServiceImpl implements UserService {
 
         User user = getUserById(uuid);
         userRepository.delete(user);
-
+        log.info("Пользователь {} успешно удален!", user::getUsername);
         return new ApiResponse(true, "Пользователь " + user.getUsername() + " успешно удален");
+    }
+
+    @Override
+    public List<Follower> getUserFollowers(UUID uuid) {
+        return getUserById(uuid)
+                .getFollowers().stream()
+                .filter(follower -> follower.isConfirmed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Following> getUserFollowings(UUID uuid) {
+        return getUserById(uuid)
+                .getFollowings().stream()
+                .filter(following -> following.isConfirmed())
+                .collect(Collectors.toList());
     }
 }

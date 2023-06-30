@@ -2,10 +2,7 @@ package ru.borisov.users.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -15,6 +12,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Following {
 
     @Id
@@ -26,4 +25,6 @@ public class Following {
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties(value = {"following"})
     private User user;
+
+    private boolean confirmed;
 }
