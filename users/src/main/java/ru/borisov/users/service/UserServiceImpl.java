@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
@@ -15,11 +16,13 @@ import ru.borisov.users.model.Follower;
 import ru.borisov.users.model.Following;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
+import ru.borisov.users.repository.SkillRepository;
 import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final SkillRepository skillRepository;
     private final ValidationUtils validationUtils;
     private final PasswordEncoder passwordEncoder;
 
@@ -88,10 +92,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Skill addSkillToUser(UpdateUserInfoRequest request, UUID id) {
+    @Transactional
+    public Skill addSkillToUser(AddSkillRequest request, UUID id) {
 
+        log.info("Запрос на добавление навыка от пользователя c id={}. Тело запроса: {} ", id::toString, request::toString);
+        User user = getUserById(id);
+        Skill skill;
+        Optional<Skill> skillOptional = skillRepository.findByTitleIgnoreCase(request.getTitle());
+        if (skillOptional.isPresent()) {
+            skill = skillOptional.get();
+            user.getSkills().add(skill);
+            userRepository.save(user);
 
-        return null;
+            log.info("Пользователь {} добавил навык {}", user::getUsername, skill::getTitle);
+            return skill;
+        }
+
+        skill = Skill.builder()
+                .title(request.getTitle().toLowerCase()) // сохраняем все в нижнем регистре
+                .skillType(request.getSkillType())
+                .build();
+        skill = skillRepository.save(skill);
+        user.getSkills().add(skill);
+        userRepository.save(user);
+        log.info("Пользователь {} добавил навык {}", user::getUsername, skill::getTitle);
+
+        return skill;
     }
 
     @Override
@@ -135,4 +161,5 @@ public class UserServiceImpl implements UserService {
                 .filter(following -> following.isConfirmed())
                 .collect(Collectors.toList());
     }
+
 }

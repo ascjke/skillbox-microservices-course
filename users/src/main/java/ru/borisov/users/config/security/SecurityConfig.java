@@ -1,4 +1,4 @@
-package ru.borisov.users.config;
+package ru.borisov.users.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

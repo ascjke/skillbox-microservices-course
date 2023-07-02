@@ -10,9 +10,14 @@ import ru.borisov.users.exception.error.Code;
 import ru.borisov.users.model.Follower;
 import ru.borisov.users.model.Following;
 import ru.borisov.users.model.User;
+import ru.borisov.users.repository.FollowerRepository;
+import ru.borisov.users.repository.FollowingRepository;
 import ru.borisov.users.repository.UserRepository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +25,8 @@ import java.util.UUID;
 public class SubscribeServiceImpl implements SubscribeService {
 
     private final UserRepository userRepository;
+    private final FollowingRepository followingRepository;
+    private final FollowerRepository followerRepository;
     private final UserService userService;
 
     @Override
@@ -29,19 +36,19 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info("Пользователь с id={} отправил запрос на подписку пользователю {}", currentUserId::toString, followingUserId::toString);
         User currentUser = userService.getUserById(currentUserId);
         User followingUser = userService.getUserById(followingUserId);
-        Following following = findFollowingByUser(currentUser, followingUser);
-        if (following != null && (following.isConfirmed())) {
+        Optional<Following> optionalFollowing = followingRepository.findByUser(followingUser);
+        if (optionalFollowing.isPresent()) {
             throw new CommonException(Code.CONFLICT,
-                    "Вы уже подписаны на данного пользователя!",
+                    "Вы уже отправляли запрос на подписку на данного пользователя!",
                     HttpStatus.CONFLICT);
         }
 
-        following = Following.builder()
-                .user(currentUser)
+        Following following = Following.builder()
+                .user(followingUser)
                 .build();
 
         Follower follower = Follower.builder()
-                .user(followingUser)
+                .user(currentUser)
                 .build();
 
         currentUser.getFollowings().add(following);
@@ -50,6 +57,16 @@ public class SubscribeServiceImpl implements SubscribeService {
         userRepository.save(currentUser);
         userRepository.save(followingUser);
         log.info("Пользователь {} отправил запрос на подписку пользователю {}", currentUser::getUsername, followingUser::getUsername);
+    }
+
+    @Override
+    @Transactional
+    public List<Follower> getSubscriptionRequests(UUID id) {
+
+        User user = userService.getUserById(id);
+        return user.getFollowers().stream()
+                .filter(follower -> !follower.isConfirmed())
+                .collect(Collectors.toList());
     }
 
     @Override

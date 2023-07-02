@@ -9,4 +9,6 @@ import java.util.UUID;
 
 public interface FollowingRepository extends JpaRepository<Following, UUID> {
 
+    Optional<Following> findByUser(User user);
+
 }

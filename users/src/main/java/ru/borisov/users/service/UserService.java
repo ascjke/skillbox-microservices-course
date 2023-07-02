@@ -1,5 +1,6 @@
 package ru.borisov.users.service;
 
+import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
@@ -27,5 +28,5 @@ public interface UserService {
 
     List<Following> getUserFollowings(UUID uuid);
 
-    Skill addSkillToUser(UpdateUserInfoRequest request, UUID id);
+    Skill addSkillToUser(AddSkillRequest request, UUID id);
 }

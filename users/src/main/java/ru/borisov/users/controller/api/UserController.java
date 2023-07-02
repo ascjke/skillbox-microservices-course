@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
@@ -69,7 +70,7 @@ public class UserController {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "BAD_REQUEST")
             })
     public ResponseEntity<Response> addSkillToUser(
-            @RequestBody UpdateUserInfoRequest request,
+            @RequestBody AddSkillRequest request,
             @PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
@@ -97,6 +98,19 @@ public class UserController {
                         .success(true)
                         .message("Вы отправили запрос на подписку")
                         .build())
+                .build(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/subscriptionRequests")
+    @Operation(summary = "Запросы на подписку",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
+                            content = @Content(schema = @Schema(implementation = Follower[].class)))
+            })
+    public ResponseEntity<Response> getSubscriptionRequests(@PathVariable UUID id) {
+
+        return new ResponseEntity<>(SuccessResponse.builder()
+                .data(subscribeService.getSubscriptionRequests(id))
                 .build(), HttpStatus.OK);
     }
 

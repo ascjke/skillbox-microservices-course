@@ -18,12 +18,13 @@ public class Follower {
 
     @Id
     @Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
     private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(value = {"follower"})
+    @JsonIgnoreProperties(value = {"follower", "followings"})
     private User user;
 
     private boolean confirmed;

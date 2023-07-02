@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.model.Male;
 import ru.borisov.users.model.User;
+import ru.borisov.users.repository.SkillRepository;
 import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
 
@@ -23,6 +24,7 @@ class UserServiceImplTest {
     void createUser() {
         // given
         UserRepository userRepository = Mockito.mock(UserRepository.class);
+        SkillRepository skillRepository = Mockito.mock(SkillRepository.class);
         ValidationUtils validationUtils = Mockito.mock(ValidationUtils.class);
         PasswordEncoder passwordEncoder = Mockito.mock(PasswordEncoder.class);
 
@@ -30,16 +32,6 @@ class UserServiceImplTest {
                 .username("ascjke")
                 .email("ascjke@mail.ru")
                 .password("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
-                .lastName("Иванов")
-                .firstName("Иван")
-                .middleName("Иванович")
-                .male(Male.MALE)
-                .birthDate(LocalDate.of(1990, 6, 23))
-                .city("Якутск")
-                .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
-                .bio("nothing to say")
-                .hardSkills(List.of("java", "docker"))
-                .phone("89141002304567")
                 .build();
 
         User user = User.builder()
@@ -76,7 +68,7 @@ class UserServiceImplTest {
 
         doNothing().when(validationUtils).validateRequest(registerUserRequest);
         Mockito.when(userRepository.save(user)).thenReturn(savedUser);
-        UserService userService = new UserServiceImpl(userRepository, validationUtils, passwordEncoder);
+        UserService userService = new UserServiceImpl(userRepository, skillRepository,  validationUtils, passwordEncoder);
 
         //when
         User result = userService.registerUser(registerUserRequest);
