@@ -1,8 +1,12 @@
 package ru.borisov.users.service;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.model.Male;
@@ -12,29 +16,35 @@ import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Mockito.doNothing;
 
 class UserServiceImplTest {
 
+    @Mock
+    private UserRepository userRepository;
 
-    @Test
-    void createUser() {
-        // given
-        UserRepository userRepository = Mockito.mock(UserRepository.class);
-        SkillRepository skillRepository = Mockito.mock(SkillRepository.class);
-        ValidationUtils validationUtils = Mockito.mock(ValidationUtils.class);
-        PasswordEncoder passwordEncoder = Mockito.mock(PasswordEncoder.class);
+    @Mock
+    private SkillRepository skillRepository;
 
-        RegisterUserRequest registerUserRequest = RegisterUserRequest.builder()
-                .username("ascjke")
-                .email("ascjke@mail.ru")
-                .password("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
-                .build();
+    @Mock
+    private ValidationUtils validationUtils;
 
-        User user = User.builder()
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    private User user;
+    private User savedUser;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+
+        user = User.builder()
                 .username("ascjke")
                 .email("ascjke@mail.ru")
                 .passwordHash("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
@@ -48,9 +58,18 @@ class UserServiceImplTest {
                 .bio("nothing to say")
                 .phone("89141002304567")
                 .build();
+    }
 
-        User savedUser =
-                User.builder()
+    @Test
+    void createUser() {
+        // given
+        RegisterUserRequest registerUserRequest = RegisterUserRequest.builder()
+                .username("ascjke")
+                .email("ascjke@mail.ru")
+                .password("$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO")
+                .build();
+
+        savedUser = User.builder()
                         .id(UUID.fromString("4d5d6017-980a-45e1-be03-9df962af9813"))
                         .username("ascjke")
                         .email("ascjke@mail.ru")
@@ -65,10 +84,8 @@ class UserServiceImplTest {
                         .bio("nothing to say")
                         .phone("89141002304567")
                         .build();
-
         doNothing().when(validationUtils).validateRequest(registerUserRequest);
         Mockito.when(userRepository.save(user)).thenReturn(savedUser);
-        UserService userService = new UserServiceImpl(userRepository, skillRepository,  validationUtils, passwordEncoder);
 
         //when
         User result = userService.registerUser(registerUserRequest);
@@ -79,6 +96,8 @@ class UserServiceImplTest {
 
     @Test
     void editUser() {
+
+
     }
 
     @Test

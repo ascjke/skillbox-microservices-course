@@ -79,7 +79,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/{id}/followRequest/{followingUserId}")
+    @PutMapping("/{id}/requestSubscription/{followingUserId}")
     @Operation(summary = "Отправить запрос на подписку",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",

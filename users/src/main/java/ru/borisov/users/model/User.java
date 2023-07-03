@@ -1,5 +1,6 @@
 package ru.borisov.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
@@ -11,10 +12,7 @@ import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "_user")
@@ -41,6 +39,7 @@ public class User {
     private String email;
 
     @NotNull
+    @JsonIgnore
     private String passwordHash;
 
     private String lastName;
@@ -73,15 +72,13 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
-//    @Where(clause = "confirmed = true")
-    private Set<Follower> followers = new HashSet<>();
+    private Set<Follower> followers = new HashSet<>(); // подписчики
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"user"})
-//    @Where(clause = "confirmed = true")
-    private Set<Following> followings = new HashSet<>();
+    private Set<Following> followings = new HashSet<>(); // подписки
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -97,7 +94,7 @@ public class User {
     }
 
     @Transient
-    public long getFollowingCount() {
+    public long getFollowingsCount() {
         return followings.stream()
                 .filter(following -> following.isConfirmed())
                 .count();

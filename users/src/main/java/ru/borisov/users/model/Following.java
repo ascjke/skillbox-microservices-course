@@ -24,8 +24,13 @@ public class Following {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(value = {"follower", "followings"})
+    @JsonIgnoreProperties(value = {"passwordHash", "follower", "followings"})
     private User user;
+
+    @Transient
+    public String getUsername() {
+        return user.getUsername();
+    }
 
     private boolean confirmed;
 }

@@ -1,10 +1,11 @@
 package ru.borisov.users.service;
 
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.error.Code;
 import ru.borisov.users.model.Follower;
@@ -56,6 +57,7 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         userRepository.save(currentUser);
         userRepository.save(followingUser);
+
         log.info("Пользователь {} отправил запрос на подписку пользователю {}", currentUser::getUsername, followingUser::getUsername);
     }
 
