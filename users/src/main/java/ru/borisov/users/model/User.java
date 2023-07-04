@@ -12,7 +12,10 @@ import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "_user")
@@ -68,17 +71,17 @@ public class User {
 
     private boolean deleted;
 
-    @OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "to",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"user"})
-    private Set<Follower> followers = new HashSet<>(); // подписчики
+    @JsonIgnore
+    private Set<Follower> followers;
 
-    @OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "from",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"user"})
-    private Set<Following> followings = new HashSet<>(); // подписки
+    @JsonIgnore
+    private Set<Follower> following;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -87,17 +90,13 @@ public class User {
     private LocalDateTime updatedAt;
 
     @Transient
-    public long getFollowersCount() {
-        return followers.stream()
-                .filter(follower -> follower.isConfirmed())
-                .count();
+    public int getFollowersCount() {
+        return followers.size();
     }
 
     @Transient
-    public long getFollowingsCount() {
-        return followings.stream()
-                .filter(following -> following.isConfirmed())
-                .count();
+    public int getFollowingCount() {
+        return following.size();
     }
 
     public boolean isInfoUpdated(UpdateUserInfoRequest request) {

@@ -1,19 +1,21 @@
 package ru.borisov.users.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "follower")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Table(
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"from_user_fk", "to_user_fk"})
+)
 public class Follower {
 
     @Id
@@ -23,14 +25,10 @@ public class Follower {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(value = {"passwordHash", "follower", "followings"})
-    private User user;
+    @JoinColumn(name = "from_user_fk")
+    private User from;
 
-    @Transient
-    public String getUsername() {
-        return user.getUsername();
-    }
-
-    private boolean confirmed;
+    @ManyToOne
+    @JoinColumn(name = "to_user_fk")
+    private User to;
 }

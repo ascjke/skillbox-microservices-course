@@ -9,5 +9,7 @@ import java.util.UUID;
 
 public interface FollowerRepository extends JpaRepository<Follower, UUID> {
 
-    Optional<Follower> findByUser(User user);
+    Optional<Follower> findByTo(User to);
+
+    Optional<Follower> findByFromAndTo(User from, User to);
 }

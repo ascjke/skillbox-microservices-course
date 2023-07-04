@@ -78,44 +78,26 @@ databaseChangeLog:
             tableName: follower
             columns:
               - column:
+                  name: from_user_fk
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+              - column:
                   name: id
-                  type: uuid
-                  defaultValueComputed: gen_random_uuid()
+                  type: UUID
                   constraints:
-                    nullable: false
                     primaryKey: true
+                    nullable: false
+                    defaultValueComputed: gen_random_uuid()
               - column:
-                  name: user_id
-                  type: uuid
+                  name: to_user_fk
+                  type: UUID
                   defaultValueComputed: gen_random_uuid()
-              - column:
-                  name: confirmed
-                  type: boolean
+            constraints:
+              - uniqueConstraint:
+                  columnNames: from_user_fk, to_user_fk
 
   - changeSet:
       id: 000-3
-      author: zakhar
-      changes:
-        - createTable:
-            tableName: following
-            columns:
-              - column:
-                  name: id
-                  type: uuid
-                  defaultValueComputed: gen_random_uuid()
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-              - column:
-                  name: user_id
-                  type: uuid
-                  defaultValueComputed: gen_random_uuid()
-              - column:
-                  name: confirmed
-                  type: boolean
-
-  - changeSet:
-      id: 000-4
       author: zakhar
       changes:
         - createTable:
@@ -140,7 +122,7 @@ databaseChangeLog:
                     unique: true
 
   - changeSet:
-      id: 000-5
+      id: 000-4
       author: zakhar
       changes:
         - createTable:
@@ -160,29 +142,24 @@ databaseChangeLog:
                     primaryKey: true
 
   - changeSet:
-      id: 000-6
+      id: 000-5
       author: zakhar
       changes:
         - addForeignKeyConstraint:
             baseTableName: follower
-            baseColumnNames: user_id
+            baseColumnNames: from_user_fk
             referencedTableName: _user
             referencedColumnNames: id
-            constraintName: FKt2h2346u92r18ijwxfg6gir6k
-
-  - changeSet:
-      id: 000-7
-      author: zakhar
-      changes:
+            constraintName: FKj98cl1gy806hh83s4s16uwpqa
         - addForeignKeyConstraint:
-            baseTableName: following
-            baseColumnNames: user_id
+            baseTableName: follower
+            baseColumnNames: to_user_fk
             referencedTableName: _user
             referencedColumnNames: id
-            constraintName: FK4kpme8qo5uu1f7o71wk10lnxf
+            constraintName: FKg6579ngfgw5emt7a30q3bn0je
 
   - changeSet:
-      id: 000-8
+      id: 000-6
       author: zakhar
       changes:
         - addForeignKeyConstraint:
@@ -193,7 +170,7 @@ databaseChangeLog:
             constraintName: FKj53flyds4vknyh8llw5d7jdop
 
   - changeSet:
-      id: 000-9
+      id: 000-7
       author: zakhar
       changes:
         - addForeignKeyConstraint:

@@ -5,11 +5,11 @@ import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.model.Follower;
-import ru.borisov.users.model.Following;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public interface UserService {
@@ -24,9 +24,7 @@ public interface UserService {
 
     ApiResponse removeUserById(UUID uuid);
 
-    List<Follower> getUserFollowers(UUID uuid);
+    Set<User> getUserFollowers(UUID uuid);
 
-    List<Following> getUserFollowings(UUID uuid);
-
-    Skill addSkillToUser(AddSkillRequest request, UUID id);
+    Set<User> getUserFollowing(UUID uuid);
 }

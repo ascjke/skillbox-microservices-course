@@ -14,10 +14,10 @@ import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.controller.response.Response;
 import ru.borisov.users.controller.response.SuccessResponse;
 import ru.borisov.users.model.Follower;
-import ru.borisov.users.model.Following;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
-import ru.borisov.users.service.SubscribeService;
+import ru.borisov.users.service.FollowService;
+import ru.borisov.users.service.SkillService;
 import ru.borisov.users.service.UserService;
 
 import java.util.UUID;
@@ -28,7 +28,8 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
-    private final SubscribeService subscribeService;
+    private final SkillService skillService;
+    private final FollowService followService;
 
     @PostMapping
     @Operation(summary = "Регистрация пользователя",
@@ -62,7 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/addSkill")
-    @Operation(summary = "Добавить skill пользователю",
+    @Operation(summary = "Добавить навык пользователю",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
                             content = @Content(schema = @Schema(implementation = Skill.class))),
@@ -74,81 +75,68 @@ public class UserController {
             @PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(userService.addSkillToUser(request, id))
+                .data(skillService.addSkillToUser(request, id))
+                .build(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/removeSkill/{skillId}")
+    @Operation(summary = "Удалить навык пользователя",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
+                            content = @Content(schema = @Schema(implementation = Skill.class))),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "BAD_REQUEST")
+            })
+    public ResponseEntity<Response> addSkillToUser(
+            @PathVariable UUID id,
+            @PathVariable UUID skillId) {
+
+        skillService.removeSkillFromUser(id, skillId);
+
+        return new ResponseEntity<>(SuccessResponse.builder()
+                .data(ApiResponse.builder()
+                        .success(true)
+                        .message("Навык удален")
+                        .build())
                 .build(), HttpStatus.OK);
     }
 
 
-    @PutMapping("/{id}/requestSubscription/{followingUserId}")
-    @Operation(summary = "Отправить запрос на подписку",
+    @PutMapping("/{id}/follow/{followingUserId}")
+    @Operation(summary = "Подписаться на пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
                             content = @Content(schema = @Schema(implementation = ApiResponse.class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND"),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "CONFLICT")
             })
-    public ResponseEntity<Response> requestSubscription(
+    public ResponseEntity<Response> follow(
             @PathVariable UUID id,
             @PathVariable UUID followingUserId) {
 
-        subscribeService.requestSubscription(id, followingUserId);
+        followService.follow(id, followingUserId);
 
         return new ResponseEntity<>(SuccessResponse.builder()
                 .data(ApiResponse.builder()
                         .success(true)
-                        .message("Вы отправили запрос на подписку")
-                        .build())
-                .build(), HttpStatus.OK);
-    }
-
-    @PutMapping("/{id}/subscriptionRequests")
-    @Operation(summary = "Запросы на подписку",
-            responses = {
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = Follower[].class)))
-            })
-    public ResponseEntity<Response> getSubscriptionRequests(@PathVariable UUID id) {
-
-        return new ResponseEntity<>(SuccessResponse.builder()
-                .data(subscribeService.getSubscriptionRequests(id))
-                .build(), HttpStatus.OK);
-    }
-
-
-    @PutMapping("/{id}/confirmFollower/{followerUserId}")
-    @Operation(summary = "Разрешить подписку",
-            responses = {
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
-            })
-    public ResponseEntity<Response> confirmSubscription(
-            @PathVariable UUID id,
-            @PathVariable UUID followerUserId) {
-
-        subscribeService.confirmSubscription(id, followerUserId);
-
-        return new ResponseEntity<>(SuccessResponse.builder()
-                .data(ApiResponse.builder()
-                        .success(true)
-                        .message("Вы разрешили подписку пользователю")
+                        .message("Вы успешно подписались")
                         .build())
                 .build(), HttpStatus.OK);
     }
 
 
-    @DeleteMapping("/{id}/unSubscribe/{followingUserId}")
+    @DeleteMapping("/{id}/unfollow/{followingUserId}")
     @Operation(summary = "Отписаться от пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
                             content = @Content(schema = @Schema(implementation = ApiResponse.class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
-    public ResponseEntity<Response> unsubscribeUser(
+    public ResponseEntity<Response> unfollow(
             @PathVariable UUID id,
             @PathVariable UUID followingUserId) {
 
-        subscribeService.unsubscribeUser(id, followingUserId);
+        followService.unfollow(id, followingUserId);
 
         return new ResponseEntity<>(SuccessResponse.builder()
                 .data(ApiResponse.builder()
@@ -188,18 +176,17 @@ public class UserController {
                 .build(), HttpStatus.OK);
     }
 
-
-    @GetMapping("/{id}/followings")
+    @GetMapping("/{id}/following")
     @Operation(summary = "Подписки пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = Following[].class))),
+                            content = @Content(schema = @Schema(implementation = Follower[].class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
-    public ResponseEntity<Response> getUserFollowings(@PathVariable UUID id) {
+    public ResponseEntity<Response> getUserFollowing(@PathVariable UUID id) {
 
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(userService.getUserFollowings(id))
+                .data(userService.getUserFollowing(id))
                 .build(), HttpStatus.OK);
     }
 

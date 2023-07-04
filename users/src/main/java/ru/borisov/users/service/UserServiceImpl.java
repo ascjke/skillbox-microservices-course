@@ -6,23 +6,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.error.Code;
 import ru.borisov.users.model.Follower;
-import ru.borisov.users.model.Following;
-import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
-import ru.borisov.users.repository.SkillRepository;
 import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -32,7 +28,6 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final SkillRepository skillRepository;
     private final ValidationUtils validationUtils;
     private final PasswordEncoder passwordEncoder;
 
@@ -47,7 +42,7 @@ public class UserServiceImpl implements UserService {
                 .email(request.getEmail())
                 .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .followers(new HashSet<>())
-                .followings(new HashSet<>())
+                .following(new HashSet<>())
                 .build();
 
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -92,35 +87,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public Skill addSkillToUser(AddSkillRequest request, UUID id) {
-
-        log.info("Запрос на добавление навыка от пользователя c id={}. Тело запроса: {} ", id::toString, request::toString);
-        User user = getUserById(id);
-        Skill skill;
-        Optional<Skill> skillOptional = skillRepository.findByTitleIgnoreCase(request.getTitle());
-        if (skillOptional.isPresent()) {
-            skill = skillOptional.get();
-            user.getSkills().add(skill);
-            userRepository.save(user);
-
-            log.info("Пользователь {} добавил навык {}", user::getUsername, skill::getTitle);
-            return skill;
-        }
-
-        skill = Skill.builder()
-                .title(request.getTitle().toLowerCase()) // сохраняем все в нижнем регистре
-                .skillType(request.getSkillType())
-                .build();
-        skill = skillRepository.save(skill);
-        user.getSkills().add(skill);
-        userRepository.save(user);
-        log.info("Пользователь {} добавил навык {}", user::getUsername, skill::getTitle);
-
-        return skill;
-    }
-
-    @Override
     public User getUserById(UUID uuid) {
 
         return userRepository.findById(uuid)
@@ -147,19 +113,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Follower> getUserFollowers(UUID uuid) {
-        return getUserById(uuid)
-                .getFollowers().stream()
-                .filter(follower -> follower.isConfirmed())
-                .collect(Collectors.toList());
+    public Set<User> getUserFollowers(UUID uuid) {
+        return getUserById(uuid).getFollowers().stream()
+                .map(Follower::getFrom)
+                .collect(Collectors.toSet());
     }
 
     @Override
-    public List<Following> getUserFollowings(UUID uuid) {
-        return getUserById(uuid)
-                .getFollowings().stream()
-                .filter(following -> following.isConfirmed())
-                .collect(Collectors.toList());
+    public Set<User> getUserFollowing(UUID uuid) {
+        return getUserById(uuid).getFollowing().stream()
+                .map(Follower::getTo)
+                .collect(Collectors.toSet());
     }
+
 
 }
