@@ -6,6 +6,7 @@ import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -17,7 +18,8 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureTestDatabase(replace = NONE)
 @Testcontainers
-public class UserTestContainer {
+@ActiveProfiles("application-test")
+public class DatabaseTestContainer {
 
     private static final String DATABASE_NAME = "users";
     private static int containerPort = 5432;
@@ -41,8 +43,9 @@ public class UserTestContainer {
         registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
         registry.add("spring.datasource.driver-class-name", () -> "org.postgresql.Driver");
 
-        registry.add("spring.flyway.baseline-on-migrate", () -> true);
-        registry.add("spring.enabled", () -> true);
+        registry.add("spring.jpa.properties.hibernate.default_schema", () -> "users_scheme");
+        registry.add("spring.liquibase.enabled", () -> true);
+        registry.add("spring.liquibase.default-schema", () -> "users_scheme");
     }
 
 }

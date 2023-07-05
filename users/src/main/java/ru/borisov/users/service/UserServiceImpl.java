@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
         User user = getUserById(uuid);
         userRepository.delete(user);
         log.info("Пользователь {} успешно удален!", user::getUsername);
-        return new ApiResponse(true, "Пользователь " + user.getUsername() + " успешно удален");
+        return new ApiResponse(true, "Пользователь " + user.getUsername() + " успешно удален!");
     }
 
     @Override

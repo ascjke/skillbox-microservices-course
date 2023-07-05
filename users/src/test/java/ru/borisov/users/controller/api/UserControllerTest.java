@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ru.borisov.users.UserTestContainer;
+import ru.borisov.users.DatabaseTestContainer;
 import ru.borisov.users.model.Male;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.UserRepository;
@@ -24,7 +24,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-class UserControllerTest extends UserTestContainer {
+class UserControllerTest extends DatabaseTestContainer {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -72,16 +72,7 @@ class UserControllerTest extends UserTestContainer {
                 {
                   "username": "testUser",
                   "email": "test@mail.ru",
-                  "passwordHash": "$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO",
-                  "lastName": "Иванов",
-                  "firstName": "Иван",
-                  "middleName": "Иванович",
-                  "male": "MALE",
-                  "birthDate": "1990-06-23",
-                  "city": "Якутск",
-                  "profileImage": "https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg",
-                  "bio": "nothing to say",
-                  "phone": "89141002304567"
+                  "password": "12345"
                 }
                 """;
 

@@ -1,621 +1,600 @@
-2023-07-04 14:51:17,019 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 229826 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 14:51:17,029 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 14:51:17,030 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 14:51:18,045 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 14:51:18,101 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1042 ms
-2023-07-04 14:51:19,703 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController' defined in file [/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main/ru/borisov/users/controller/api/UserController.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'followServiceImpl' defined in file [/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main/ru/borisov/users/service/FollowServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'followerRepository' defined in ru.borisov.users.repository.FollowerRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); Reason: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-2023-07-04 14:51:19,734 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+2023-07-05 14:20:33,414 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.controller.api.UserControllerTest
+2023-07-05 14:20:36,784 INFO r.b.u.c.a.UserControllerTest [Test worker] Starting UserControllerTest using Java 17.0.5 with PID 385769 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:20:36,786 DEBUG r.b.u.c.a.UserControllerTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:20:36,787 INFO r.b.u.c.a.UserControllerTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:20:39,958 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:20:40,463 INFO r.b.u.c.a.UserControllerTest [Test worker] Started UserControllerTest in 3.872 seconds (process running for 7.89)
+2023-07-05 14:20:40,912 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 14:20:40,977 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=testUser, email=test@mail.ru, password=null) 
+2023-07-05 14:20:40,993 ERROR r.b.u.u.ValidationUtils [Test worker] Переданный в запросе json не валиден, ошибки валидации: must not be blank
+2023-07-05 14:20:40,997 ERROR r.b.u.e.ExceptionControllerAdvice [Test worker] common error: CommonException(code=REQUEST_VALIDATION_ERROR, message=must not be blank, httpStatus=400 BAD_REQUEST)
+2023-07-05 14:21:16,230 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.controller.api.UserControllerTest
+2023-07-05 14:21:19,233 INFO r.b.u.c.a.UserControllerTest [Test worker] Starting UserControllerTest using Java 17.0.5 with PID 386232 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:21:19,235 DEBUG r.b.u.c.a.UserControllerTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:21:19,236 INFO r.b.u.c.a.UserControllerTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:21:21,818 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:21:22,266 INFO r.b.u.c.a.UserControllerTest [Test worker] Started UserControllerTest in 3.182 seconds (process running for 6.774)
+2023-07-05 14:21:22,601 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 14:21:22,661 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=testUser, email=test@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 14:21:22,830 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: testUser 
+2023-07-05 14:21:45,077 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.controller.api.UserControllerTest
+2023-07-05 14:21:48,366 INFO r.b.u.c.a.UserControllerTest [Test worker] Starting UserControllerTest using Java 17.0.5 with PID 386640 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:21:48,368 DEBUG r.b.u.c.a.UserControllerTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:21:48,369 INFO r.b.u.c.a.UserControllerTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:21:50,873 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:21:51,329 INFO r.b.u.c.a.UserControllerTest [Test worker] Started UserControllerTest in 3.106 seconds (process running for 6.973)
+2023-07-05 14:21:51,743 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 14:21:51,830 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=testUser, email=test@mail.ru, password=12345) 
+2023-07-05 14:21:52,064 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: testUser 
+2023-07-05 14:27:11,561 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:27:14,515 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 388194 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:27:14,518 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:27:14,518 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:27:17,175 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:27:17,750 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.399 seconds (process running for 6.875)
+2023-07-05 14:28:24,754 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:28:27,708 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 388696 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:28:27,710 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:28:27,711 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:28:30,247 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:28:30,730 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.212 seconds (process running for 6.684)
+2023-07-05 14:29:45,649 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:29:48,661 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 389218 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:29:48,663 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:29:48,663 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:29:51,312 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:29:51,757 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.245 seconds (process running for 6.781)
+2023-07-05 14:30:25,336 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:30:28,358 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 389624 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:30:28,360 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:30:28,361 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:30:30,888 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:30:31,346 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.135 seconds (process running for 6.711)
+2023-07-05 14:30:37,064 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:30:40,038 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 389980 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:30:40,040 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:30:40,041 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:30:42,738 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:30:43,259 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.367 seconds (process running for 6.961)
+2023-07-05 14:31:00,756 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:31:03,981 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 390374 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:31:03,983 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:31:03,983 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:31:06,516 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:31:07,041 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.204 seconds (process running for 6.994)
+2023-07-05 14:33:33,346 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:33:36,478 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 391291 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:33:36,480 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:33:36,481 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:33:38,989 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:33:39,444 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.109 seconds (process running for 6.801)
+2023-07-05 14:35:40,163 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:35:43,161 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 391878 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:35:43,163 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:35:43,164 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:35:45,698 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:35:46,152 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.135 seconds (process running for 6.689)
+2023-07-05 14:36:09,480 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:36:12,436 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 392268 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:36:12,438 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:36:12,439 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:36:14,972 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:36:15,457 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.163 seconds (process running for 6.657)
+2023-07-05 14:37:09,122 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:37:12,212 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 392725 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:37:12,216 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:37:12,217 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:37:14,805 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:37:15,250 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.247 seconds (process running for 6.819)
+2023-07-05 14:38:14,504 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:38:17,402 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 393187 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:38:17,403 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:38:17,404 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:38:19,869 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:38:20,308 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.048 seconds (process running for 6.704)
+2023-07-05 14:39:03,839 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 14:39:06,789 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 393632 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:39:06,791 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:39:06,792 INFO r.b.u.r.UserRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:39:09,648 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:39:10,303 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.662 seconds (process running for 7.135)
+2023-07-05 14:47:46,485 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:47:49,535 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 395009 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:47:49,537 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:47:49,538 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:47:52,101 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:47:52,556 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.173 seconds (process running for 6.793)
+2023-07-05 14:48:49,938 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:48:53,036 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 395505 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:48:53,038 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:48:53,039 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:48:55,534 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:48:55,966 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.073 seconds (process running for 6.707)
+2023-07-05 14:49:01,935 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:49:05,073 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 395861 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:49:05,075 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:49:05,075 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:49:07,671 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:49:08,116 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.2 seconds (process running for 6.963)
+2023-07-05 14:49:08,806 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: duplicate key value violates unique constraint "skill_title_key"
+  Detail: Key (title)=(java8) already exists.
+2023-07-05 14:49:31,024 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:49:34,102 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 396245 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:49:34,103 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:49:34,104 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:49:36,726 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:49:37,187 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.304 seconds (process running for 6.873)
+2023-07-05 14:50:44,332 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:50:47,260 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 396742 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:50:47,262 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:50:47,262 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:50:49,803 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:50:50,283 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.164 seconds (process running for 6.641)
+2023-07-05 14:51:20,302 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:51:23,287 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 397171 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:51:23,289 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:51:23,290 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:51:26,073 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:51:26,537 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.397 seconds (process running for 6.912)
+2023-07-05 14:52:12,717 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:52:16,246 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 397644 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:52:16,252 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:52:16,256 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:52:19,613 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:52:20,125 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 4.289 seconds (process running for 8.211)
+2023-07-05 14:54:17,504 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:54:18,900 ERROR t.postgres:15-alpine [Test worker] Could not start container
+com.github.dockerjava.api.exception.InternalServerErrorException: Status 500: {"message":"driver failed programming external connectivity on endpoint stoic_buck (aa64ad5c226a670fc2ab08d17a52a194c34534d47785006a4b7f13dac238cbe2): Bind for 0.0.0.0:5440 failed: port is already allocated"}
 
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2023-07-04 14:51:19,744 ERROR o.s.b.SpringApplication [main] Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController' defined in file [/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main/ru/borisov/users/controller/api/UserController.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'followServiceImpl' defined in file [/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main/ru/borisov/users/service/FollowServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'followerRepository' defined in ru.borisov.users.repository.FollowerRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); Reason: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) [spring-boot-3.1.1.jar:3.1.1]
-	at ru.borisov.users.UsersApplication.main(UsersApplication.java:10) [main/:?]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'followServiceImpl' defined in file [/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main/ru/borisov/users/service/FollowServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'followerRepository' defined in ru.borisov.users.repository.FollowerRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); Reason: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 19 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'followerRepository' defined in ru.borisov.users.repository.FollowerRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); Reason: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 19 more
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); Reason: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.Optional.map(Optional.java:260) ~[?:?]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:245) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 19 more
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional ru.borisov.users.repository.FollowerRepository.findByUser(ru.borisov.users.model.User); No property 'user' found for type 'Follower'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:107) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.Optional.map(Optional.java:260) ~[?:?]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:245) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 19 more
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'user' found for type 'Follower'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:405) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:381) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:334) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330) ~[?:?]
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:316) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:299) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:242) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
-	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[?:?]
-	at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992) ~[?:?]
-	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
-	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
-	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?]
-	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
-	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[?:?]
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:243) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:372) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
-	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[?:?]
-	at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992) ~[?:?]
-	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
-	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
-	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?]
-	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
-	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[?:?]
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:373) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:100) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at java.util.Optional.map(Optional.java:260) ~[?:?]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:245) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285) ~[spring-data-commons-3.1.1.jar:3.1.1]
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132) ~[spring-data-jpa-3.1.1.jar:3.1.1]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 19 more
-2023-07-04 14:52:48,505 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 230278 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 14:52:48,509 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 14:52:48,509 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 14:52:49,259 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 14:52:49,314 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 784 ms
-2023-07-04 14:52:50,711 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 14:52:51,088 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 14:52:51,094 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.786 seconds (process running for 3.338)
-2023-07-04 14:53:59,555 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 230752 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 14:53:59,558 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 14:53:59,559 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 14:54:00,242 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 14:54:00,294 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 717 ms
-2023-07-04 14:54:01,650 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 14:54:02,003 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 14:54:02,010 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.644 seconds (process running for 3.069)
-2023-07-04 14:54:55,066 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 231226 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 14:54:55,072 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 14:54:55,074 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 14:54:55,970 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 14:54:56,023 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 913 ms
-2023-07-04 14:54:57,447 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 14:54:57,801 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 14:54:57,807 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.03 seconds (process running for 3.551)
-2023-07-04 15:10:44,541 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 233175 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 15:10:44,545 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 15:10:44,546 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 15:10:45,264 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 15:10:45,313 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 747 ms
-2023-07-04 15:10:45,985 ERROR l.changelog [main] ChangeSet db/changelog/changesets/001-add-indexes.yaml::001-6::zakhar encountered an exception.
-2023-07-04 15:10:45,988 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/changesets/001-add-indexes.yaml::001-6::zakhar:
-     Reason: liquibase.exception.DatabaseException: ERROR: column "user_id" does not exist [Failed SQL: (0) CREATE INDEX idx_hash_follower_from_user_fk ON users_scheme.follower(user_id)]
-2023-07-04 15:10:46,001 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2023-07-04 15:10:46,009 ERROR o.s.b.SpringApplication [main] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/changesets/001-add-indexes.yaml::001-6::zakhar:
-     Reason: liquibase.exception.DatabaseException: ERROR: column "user_id" does not exist [Failed SQL: (0) CREATE INDEX idx_hash_follower_from_user_fk ON users_scheme.follower(user_id)]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-6.0.10.jar:6.0.10]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) ~[spring-context-6.0.10.jar:6.0.10]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) [spring-boot-3.1.1.jar:3.1.1]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) [spring-boot-3.1.1.jar:3.1.1]
-	at ru.borisov.users.UsersApplication.main(UsersApplication.java:10) [main/:?]
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/changesets/001-add-indexes.yaml::001-6::zakhar:
-     Reason: liquibase.exception.DatabaseException: ERROR: column "user_id" does not exist [Failed SQL: (0) CREATE INDEX idx_hash_follower_from_user_fk ON users_scheme.follower(user_id)]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:136) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$null$0(Liquibase.java:297) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:295) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.runInScope(Liquibase.java:2639) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:236) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:221) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284) ~[liquibase-core-4.20.0.jar:?]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 18 more
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/changesets/001-add-indexes.yaml::001-6::zakhar:
-     Reason: liquibase.exception.DatabaseException: ERROR: column "user_id" does not exist [Failed SQL: (0) CREATE INDEX idx_hash_follower_from_user_fk ON users_scheme.follower(user_id)]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:59) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:105) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:260) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:75) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$null$0(Liquibase.java:297) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:295) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.runInScope(Liquibase.java:2639) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:236) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:221) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284) ~[liquibase-core-4.20.0.jar:?]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 18 more
-Caused by: liquibase.exception.DatabaseException: ERROR: column "user_id" does not exist [Failed SQL: (0) CREATE INDEX idx_hash_follower_from_user_fk ON users_scheme.follower(user_id)]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:445) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:160) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1270) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1252) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:702) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:59) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:105) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:260) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:75) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$null$0(Liquibase.java:297) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:295) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.runInScope(Liquibase.java:2639) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:236) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:221) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284) ~[liquibase-core-4.20.0.jar:?]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 18 more
-Caused by: org.postgresql.util.PSQLException: ERROR: column "user_id" does not exist
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.0.jar:42.6.0]
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.0.jar:42.6.0]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:441) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:160) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1270) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1252) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:702) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:59) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:124) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:105) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:260) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:75) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$null$0(Liquibase.java:297) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:256) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.lambda$update$1(Liquibase.java:295) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.lambda$child$0(Scope.java:187) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:196) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Scope.child(Scope.java:165) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.runInScope(Liquibase.java:2639) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:236) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.Liquibase.update(Liquibase.java:221) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329) ~[liquibase-core-4.20.0.jar:?]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284) ~[liquibase-core-4.20.0.jar:?]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
-	... 18 more
-2023-07-04 15:11:17,880 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 233602 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 15:11:17,883 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 15:11:17,884 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 15:11:18,596 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 15:11:18,648 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 744 ms
-2023-07-04 15:11:20,301 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 15:11:20,659 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 15:11:20,665 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.979 seconds (process running for 3.41)
-2023-07-04 16:13:45,625 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 240585 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:13:45,632 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:13:45,633 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:13:46,732 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:13:46,804 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1137 ms
-2023-07-04 16:13:49,230 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:13:49,783 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:13:49,791 INFO r.b.u.UsersApplication [main] Started UsersApplication in 4.467 seconds (process running for 5.234)
-2023-07-04 16:16:25,538 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 241180 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:16:25,542 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:16:25,543 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:16:26,267 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:16:26,332 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 769 ms
-2023-07-04 16:16:28,291 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:16:28,666 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:16:28,673 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.375 seconds (process running for 3.844)
-2023-07-04 16:18:15,475 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-1] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@bk.ru, password=12345) 
-2023-07-04 16:18:15,626 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-1] Добавлен новый пользователь: ascjke 
-2023-07-04 16:18:31,455 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-5] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=zakhar, email=zakhar.borisov@mail.ru, password=12345) 
-2023-07-04 16:18:31,526 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-5] Добавлен новый пользователь: zakhar 
-2023-07-04 16:20:05,341 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-6] Запрос на добавление навыка от пользователя c id=56a69372-37ab-416a-bc20-e4229fc91cc4. Тело запроса: AddSkillRequest(title=java17, skillType=HARD_SKILL) 
-2023-07-04 16:20:05,380 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-6] Пользователь ascjke добавил навык java17
-2023-07-04 16:20:18,138 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-7] Запрос на добавление навыка от пользователя c id=28810204-0230-48cf-9d9a-fb6306cd205d. Тело запроса: AddSkillRequest(title=java17, skillType=HARD_SKILL) 
-2023-07-04 16:20:18,142 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-7] Пользователь zakhar добавил навык java17
-2023-07-04 16:20:55,720 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-9] Пользователь с id=56a69372-37ab-416a-bc20-e4229fc91cc4 отправил запрос на подписку пользователю 28810204-0230-48cf-9d9a-fb6306cd205d
-2023-07-04 16:20:55,729 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-9] Пользователь ascjke подписался на пользователя zakhar
-2023-07-04 16:22:11,428 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8082-exec-8] internal server error: org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Infinite recursion (StackOverflowError)
-2023-07-04 16:26:02,668 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 242592 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:26:02,673 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:26:02,675 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:26:03,467 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:26:03,518 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 820 ms
-2023-07-04 16:26:05,094 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:26:05,456 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:26:05,462 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.002 seconds (process running for 3.613)
-2023-07-04 16:33:16,406 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 243583 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:33:16,410 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:33:16,411 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:33:17,218 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:33:17,271 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 839 ms
-2023-07-04 16:33:18,865 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:33:19,256 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:33:19,262 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.07 seconds (process running for 3.664)
-2023-07-04 16:36:18,689 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 244170 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:36:18,692 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:36:18,693 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:36:19,412 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:36:19,472 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 758 ms
-2023-07-04 16:36:21,071 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:36:21,440 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:36:21,447 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.946 seconds (process running for 3.398)
-2023-07-04 16:36:44,181 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 244506 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:36:44,184 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:36:44,185 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:36:44,902 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:36:44,955 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 750 ms
-2023-07-04 16:36:46,525 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:36:46,877 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:36:46,883 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.894 seconds (process running for 3.334)
-2023-07-04 16:38:55,477 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 245245 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 16:38:55,482 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 16:38:55,483 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 16:38:56,301 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 16:38:56,353 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 843 ms
-2023-07-04 16:38:57,929 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 16:38:58,286 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 16:38:58,292 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.047 seconds (process running for 3.538)
-2023-07-04 17:11:27,884 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 248582 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:11:27,888 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:11:27,888 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:11:28,627 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:11:28,683 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 776 ms
-2023-07-04 17:11:30,261 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:11:30,612 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:11:30,618 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.931 seconds (process running for 3.358)
-2023-07-04 17:11:34,011 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8082-exec-1] internal server error: org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Infinite recursion (StackOverflowError)
-2023-07-04 17:12:25,341 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 249010 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:12:25,344 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:12:25,345 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:12:26,050 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:12:26,101 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 737 ms
-2023-07-04 17:12:27,657 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:12:28,003 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:12:28,009 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.849 seconds (process running for 3.284)
-2023-07-04 17:13:31,699 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-4] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=test, email=test@mail.ru, password=12345) 
-2023-07-04 17:13:31,827 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-4] Добавлен новый пользователь: test 
-2023-07-04 17:13:45,528 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-5] Пользователь с id=ce19eee3-aa9c-40a5-a01a-9c097a954038 отправил запрос на подписку пользователю 28810204-0230-48cf-9d9a-fb6306cd205d
-2023-07-04 17:13:45,538 ERROR r.b.u.e.ExceptionControllerAdvice [http-nio-8082-exec-5] common error: CommonException(code=CONFLICT, message=Вы уже подписаны на этого пользователя!, httpStatus=409 CONFLICT)
-2023-07-04 17:14:17,616 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 249487 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:14:17,620 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:14:17,621 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:14:18,335 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:14:18,385 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 743 ms
-2023-07-04 17:14:19,942 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:14:20,308 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:14:20,315 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.895 seconds (process running for 3.28)
-2023-07-04 17:14:23,310 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-1] Пользователь с id=ce19eee3-aa9c-40a5-a01a-9c097a954038 отправил запрос на подписку пользователю 28810204-0230-48cf-9d9a-fb6306cd205d
-2023-07-04 17:14:23,394 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-1] Пользователь test подписался на пользователя zakhar
-2023-07-04 17:17:29,937 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 250097 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:17:29,941 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:17:29,943 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:17:30,652 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:17:30,702 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 738 ms
-2023-07-04 17:17:32,275 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:17:32,627 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:17:32,633 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.882 seconds (process running for 3.28)
-2023-07-04 17:17:47,488 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 250423 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:17:47,493 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:17:47,493 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:17:48,219 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:17:48,270 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 755 ms
-2023-07-04 17:17:50,068 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:17:50,479 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:17:50,486 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.186 seconds (process running for 3.599)
-2023-07-04 17:18:03,916 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 250749 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:18:03,920 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:18:03,920 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:18:04,623 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:18:04,673 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 734 ms
-2023-07-04 17:18:06,255 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:18:06,623 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:18:06,629 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.897 seconds (process running for 3.272)
-2023-07-04 17:25:17,106 INFO r.b.u.s.FollowServiceImpl [http-nio-8082-exec-8] Пользователь test отписался от пользователя zakhar
-2023-07-04 17:31:50,958 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-3] Запрос на добавление навыка от пользователя c id=ce19eee3-aa9c-40a5-a01a-9c097a954038. Тело запроса: AddSkillRequest(title=java17, skillType=HARD_SKILL) 
-2023-07-04 17:31:50,969 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-3] Пользователь test добавил навык java17
-2023-07-04 17:31:59,975 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-4] Запрос на добавление навыка от пользователя c id=ce19eee3-aa9c-40a5-a01a-9c097a954038. Тело запроса: AddSkillRequest(title=javA17, skillType=HARD_SKILL) 
-2023-07-04 17:31:59,980 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-4] Пользователь test добавил навык java17
-2023-07-04 17:32:05,157 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-5] Запрос на добавление навыка от пользователя c id=ce19eee3-aa9c-40a5-a01a-9c097a954038. Тело запроса: AddSkillRequest(title=java8, skillType=HARD_SKILL) 
-2023-07-04 17:32:05,165 INFO r.b.u.s.UserServiceImpl [http-nio-8082-exec-5] Пользователь test добавил навык java8
-2023-07-04 17:45:00,836 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 253979 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:45:00,841 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:45:00,841 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:45:01,639 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:45:01,693 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 830 ms
-2023-07-04 17:45:03,287 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:45:03,777 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:45:03,787 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.168 seconds (process running for 3.738)
-2023-07-04 17:45:08,049 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 254283 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:45:08,053 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:45:08,054 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:45:08,783 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:45:08,836 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 763 ms
-2023-07-04 17:45:10,421 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:45:10,780 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:45:10,786 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.924 seconds (process running for 3.307)
-2023-07-04 17:46:32,933 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 254775 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
-2023-07-04 17:46:32,937 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-04 17:46:32,937 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-04 17:46:33,646 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
-2023-07-04 17:46:33,696 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 740 ms
-2023-07-04 17:46:35,251 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-04 17:46:35,609 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
-2023-07-04 17:46:35,615 INFO r.b.u.UsersApplication [main] Started UsersApplication in 2.87 seconds (process running for 3.253)
-2023-07-04 17:50:14,201 INFO r.b.u.s.SkillServiceImpl [http-nio-8082-exec-10] Запрос на удаление навыка от пользователя c id=ce19eee3-aa9c-40a5-a01a-9c097a954038. id накыва 613ba376-c79c-422e-936d-a7251fe62647 
-2023-07-04 17:50:14,212 INFO r.b.u.s.SkillServiceImpl [http-nio-8082-exec-10] Пользователь test удалил у себя навык java17
+	at org.testcontainers.shaded.com.github.dockerjava.core.DefaultInvocationBuilder.execute(DefaultInvocationBuilder.java:247) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.DefaultInvocationBuilder.post(DefaultInvocationBuilder.java:102) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.exec.StartContainerCmdExec.execute(StartContainerCmdExec.java:31) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.exec.StartContainerCmdExec.execute(StartContainerCmdExec.java:13) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.exec.AbstrSyncDockerCmdExec.exec(AbstrSyncDockerCmdExec.java:21) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.command.AbstrDockerCmd.exec(AbstrDockerCmd.java:35) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.shaded.com.github.dockerjava.core.command.StartContainerCmdImpl.exec(StartContainerCmdImpl.java:43) ~[testcontainers-1.18.3.jar:1.18.3]
+	at org.testcontainers.containers.GenericContainer.tryStart(GenericContainer.java:441) ~[testcontainers-1.18.3.jar:?]
+	at org.testcontainers.containers.GenericContainer.lambda$doStart$0(GenericContainer.java:344) ~[testcontainers-1.18.3.jar:?]
+	at org.rnorth.ducttape.unreliables.Unreliables.retryUntilSuccess(Unreliables.java:81) ~[duct-tape-1.0.8.jar:?]
+	at org.testcontainers.containers.GenericContainer.doStart(GenericContainer.java:334) ~[testcontainers-1.18.3.jar:?]
+	at org.testcontainers.containers.GenericContainer.start(GenericContainer.java:322) ~[testcontainers-1.18.3.jar:?]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension$StoreAdapter.start(TestcontainersExtension.java:274) ~[junit-jupiter-1.18.3.jar:?]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension$StoreAdapter.access$200(TestcontainersExtension.java:261) ~[junit-jupiter-1.18.3.jar:?]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension.lambda$null$3(TestcontainersExtension.java:76) ~[junit-jupiter-1.18.3.jar:?]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore.lambda$getOrComputeIfAbsent$4(ExtensionValuesStore.java:86) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$MemoizingSupplier.computeValue(ExtensionValuesStore.java:223) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$MemoizingSupplier.get(ExtensionValuesStore.java:211) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$StoredValue.evaluate(ExtensionValuesStore.java:191) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$StoredValue.access$100(ExtensionValuesStore.java:171) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore.getOrComputeIfAbsent(ExtensionValuesStore.java:89) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.execution.NamespaceAwareStore.getOrComputeIfAbsent(NamespaceAwareStore.java:53) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension.lambda$startContainers$4(TestcontainersExtension.java:76) ~[junit-jupiter-1.18.3.jar:?]
+	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension.startContainers(TestcontainersExtension.java:76) ~[junit-jupiter-1.18.3.jar:?]
+	at org.testcontainers.junit.jupiter.TestcontainersExtension.beforeAll(TestcontainersExtension.java:56) ~[junit-jupiter-1.18.3.jar:?]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeBeforeAllCallbacks$12(ClassBasedTestDescriptor.java:395) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeBeforeAllCallbacks(ClassBasedTestDescriptor.java:395) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:211) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:84) ~[junit-jupiter-engine-5.9.3.jar:5.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53) [junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99) [gradle-testing-junit-platform-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79) [gradle-testing-junit-platform-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75) [gradle-testing-junit-platform-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62) [gradle-testing-base-7.6.1.jar:7.6.1]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) [gradle-messaging-7.6.1.jar:7.6.1]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) [gradle-messaging-7.6.1.jar:7.6.1]
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) [gradle-messaging-7.6.1.jar:7.6.1]
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94) [gradle-messaging-7.6.1.jar:7.6.1]
+	at jdk.proxy1.$Proxy2.stop(Unknown Source) [?:?]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193) [gradle-testing-base-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129) [gradle-testing-base-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100) [gradle-testing-base-7.6.1.jar:7.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60) [gradle-testing-base-7.6.1.jar:7.6.1]
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) [gradle-worker-processes-7.6.1.jar:7.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113) [gradle-worker-processes-7.6.1.jar:7.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65) [gradle-worker-processes-7.6.1.jar:7.6.1]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) [gradle-worker.jar:?]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) [gradle-worker.jar:?]
+2023-07-05 14:54:18,921 ERROR t.postgres:15-alpine [Test worker] There are no stdout/stderr logs available for the failed container
+2023-07-05 14:54:35,456 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 14:54:38,619 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 398638 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 14:54:38,620 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 14:54:38,621 INFO r.b.u.r.SkillRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 14:54:41,520 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 14:54:42,200 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.745 seconds (process running for 7.448)
+2023-07-05 15:07:04,033 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 15:07:07,011 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 400302 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 15:07:07,013 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 15:07:07,014 INFO r.b.u.r.FollowerRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 15:07:09,529 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 15:07:09,971 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.103 seconds (process running for 6.752)
+2023-07-05 15:13:19,410 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 15:13:22,409 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 401560 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 15:13:22,411 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 15:13:22,412 INFO r.b.u.r.FollowerRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 15:13:24,947 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 15:13:25,389 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.123 seconds (process running for 6.712)
+2023-07-05 15:13:37,478 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 15:13:40,509 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 401926 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 15:13:40,510 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 15:13:40,511 INFO r.b.u.r.FollowerRepositoryTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 15:13:43,065 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 15:13:43,523 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.156 seconds (process running for 7.082)
+2023-07-05 15:31:55,587 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 15:32:02,213 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 15:55:10,478 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 15:55:10,489 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя null обновлены
+2023-07-05 15:59:24,079 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 15:59:24,089 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 15:59:55,186 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 15:59:55,195 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 16:00:03,164 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:00:03,174 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 16:00:38,458 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:00:38,468 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 16:00:45,775 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:00:45,785 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 16:10:20,131 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:10:20,144 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 16:10:30,652 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:10:30,663 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 16:11:22,981 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 16:11:22,990 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 16:29:06,554 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 16:29:28,425 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 16:29:35,849 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 16:41:33,627 INFO r.b.u.UsersApplication [main] Starting UsersApplication using Java 17.0.5 with PID 420296 (/home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users/build/classes/java/main started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 16:41:33,632 DEBUG r.b.u.UsersApplication [main] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 16:41:33,633 INFO r.b.u.UsersApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 16:41:34,500 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8082 (http)
+2023-07-05 16:41:34,571 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 914 ms
+2023-07-05 16:41:36,426 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 16:41:36,815 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8082 (http) with context path ''
+2023-07-05 16:41:36,822 INFO r.b.u.UsersApplication [main] Started UsersApplication in 3.429 seconds (process running for 3.914)
+2023-07-05 17:31:20,009 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:31:20,019 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 17:31:20,039 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 17:31:20,074 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:31:20,075 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: ascjke 
+2023-07-05 17:31:20,078 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:31:20,079 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 17:31:20,086 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:31:58,209 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:31:58,239 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 17:31:58,289 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 17:31:58,301 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:31:58,302 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: ascjke 
+2023-07-05 17:31:58,306 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:31:58,306 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 17:31:58,315 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:33:01,210 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.UsersApplicationTests
+2023-07-05 17:33:01,729 INFO r.b.u.UsersApplicationTests [Test worker] Starting UsersApplicationTests using Java 17.0.5 with PID 426792 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:33:01,732 DEBUG r.b.u.UsersApplicationTests [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:33:01,732 INFO r.b.u.UsersApplicationTests [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 17:33:06,000 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:33:06,647 INFO r.b.u.UsersApplicationTests [Test worker] Started UsersApplicationTests in 5.242 seconds (process running for 6.948)
+2023-07-05 17:33:07,152 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.controller.api.UserControllerTest
+2023-07-05 17:33:10,525 INFO r.b.u.c.a.DatabaseControllerTest [Test worker] Starting DatabaseControllerTest using Java 17.0.5 with PID 426792 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:33:10,525 DEBUG r.b.u.c.a.DatabaseControllerTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:33:10,526 INFO r.b.u.c.a.DatabaseControllerTest [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 17:33:11,236 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:33:11,365 INFO r.b.u.c.a.DatabaseControllerTest [Test worker] Started DatabaseControllerTest in 0.858 seconds (process running for 11.666)
+2023-07-05 17:33:11,491 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:33:11,620 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:33:11,628 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:33:11,846 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=testUser, email=test@mail.ru, password=12345) 
+2023-07-05 17:33:12,087 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: testUser 
+2023-07-05 17:33:12,202 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:33:12,211 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:33:12,451 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:33:14,510 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:33:14,532 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:33:15,027 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:33:17,291 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:33:17,302 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:33:17,541 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:33:19,994 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:33:20,002 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:33:20,009 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:33:20,642 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:33:20,648 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 17:33:20,672 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 17:33:20,681 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:33:20,681 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: ascjke 
+2023-07-05 17:33:20,685 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:33:20,686 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 17:33:20,693 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:37:39,653 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:37:42,633 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 427809 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:37:42,635 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:37:42,636 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:37:47,513 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:37:47,964 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 5.495 seconds (process running for 9.034)
+2023-07-05 17:37:48,763 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:37:50,355 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:37:50,383 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:37:50,593 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:37:52,986 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:37:52,998 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:37:53,009 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:37:53,260 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.UsersApplicationTests
+2023-07-05 17:37:53,275 INFO r.b.u.UsersApplicationTests [Test worker] Starting UsersApplicationTests using Java 17.0.5 with PID 427809 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:37:53,275 DEBUG r.b.u.UsersApplicationTests [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:37:53,276 INFO r.b.u.UsersApplicationTests [Test worker] No active profile set, falling back to 1 default profile: "default"
+2023-07-05 17:37:53,958 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:37:54,072 INFO r.b.u.UsersApplicationTests [Test worker] Started UsersApplicationTests in 0.809 seconds (process running for 15.142)
+2023-07-05 17:37:54,081 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.controller.api.UserControllerTest
+2023-07-05 17:37:55,711 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:37:58,208 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 233
+2023-07-05 17:37:58,214 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:37:58,218 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 233
+2023-07-05 17:37:58,224 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:37:58,281 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=testUser, email=test@mail.ru, password=12345) 
+2023-07-05 17:37:58,356 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:37:58,361 ERROR r.b.u.e.ExceptionControllerAdvice [Test worker] internal server error: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [select u1_0.id from users_scheme._user u1_0 where (u1_0.deleted=false) and u1_0.username=? fetch first ? rows only] [ERROR: relation "users_scheme._user" does not exist
+  Position: 21] [n/a]; SQL [n/a]
+2023-07-05 17:37:58,383 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 233
+2023-07-05 17:37:58,389 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:37:58,392 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 233
+2023-07-05 17:37:58,396 INFO o.s.b.t.m.w.SpringBootMockServletContext [Test worker] Initializing Spring TestDispatcherServlet ''
+2023-07-05 17:37:58,400 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 233
+2023-07-05 17:37:59,055 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Якутск, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:37:59,060 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос не обновил данные пользователя
+2023-07-05 17:37:59,078 INFO r.b.u.s.UserServiceImpl [Test worker] Пользователь ascjke успешно удален!
+2023-07-05 17:37:59,087 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:37:59,088 INFO r.b.u.s.UserServiceImpl [Test worker] Добавлен новый пользователь: ascjke 
+2023-07-05 17:37:59,092 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на обновление данных пользователя c id=4d5d6017-980a-45e1-be03-9df962af9813. Тело запроса: UpdateUserInfoRequest(lastName=Иванов, firstName=Иван, middleName=Иванович, male=MALE, birthDate=1990-06-23, city=Москва, profileImage=https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg, bio=nothing to say, phone=89141002304567) 
+2023-07-05 17:37:59,093 INFO r.b.u.s.UserServiceImpl [Test worker] Данные пользователя ascjke обновлены
+2023-07-05 17:37:59,101 INFO r.b.u.s.UserServiceImpl [Test worker] Запрос на создание нового пользователя. Тело запроса: RegisterUserRequest(username=ascjke, email=ascjke@mail.ru, password=$2a$12$Vj44jG3s5x6x01XqmCN.B.6sxldIRFSsXzX1TA/8oY4FmU7FkjqaO) 
+2023-07-05 17:38:54,352 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:38:57,404 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 428396 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:38:57,406 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:38:57,407 INFO r.b.u.r.UserRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:38:59,996 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:39:00,473 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.281 seconds (process running for 6.986)
+2023-07-05 17:39:05,382 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:39:08,386 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 428767 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:39:08,388 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:39:08,388 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:39:10,955 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:39:11,446 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.207 seconds (process running for 6.743)
+2023-07-05 17:39:12,201 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:39:13,775 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:39:13,788 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:39:14,036 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:39:16,415 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:39:16,424 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:39:16,431 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:40:04,326 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:40:07,298 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 429241 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:40:07,300 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:40:07,300 INFO r.b.u.r.SkillRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:40:09,696 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:40:10,117 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 2.966 seconds (process running for 6.471)
+2023-07-05 17:40:10,797 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:40:12,349 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:40:12,364 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:40:12,371 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:40:12,656 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:40:15,037 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:40:15,045 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:41:13,515 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:41:16,442 INFO r.b.u.r.UserRepositoryTest [Test worker] Starting UserRepositoryTest using Java 17.0.5 with PID 429725 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:41:16,444 DEBUG r.b.u.r.UserRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:41:16,445 INFO r.b.u.r.UserRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:41:18,941 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:41:19,368 INFO r.b.u.r.UserRepositoryTest [Test worker] Started UserRepositoryTest in 3.073 seconds (process running for 6.517)
+2023-07-05 17:41:55,238 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:41:58,280 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 430152 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:41:58,282 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:41:58,283 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:42:00,769 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:42:01,214 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.075 seconds (process running for 6.638)
+2023-07-05 17:42:56,641 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:42:59,540 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 430598 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:42:59,542 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:42:59,543 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:43:02,082 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:43:02,540 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.16 seconds (process running for 6.583)
+2023-07-05 17:43:07,431 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:43:10,433 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 430960 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:43:10,435 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:43:10,435 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:43:12,900 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:43:13,340 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.057 seconds (process running for 6.586)
+2023-07-05 17:43:14,066 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:43:16,098 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:43:16,118 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:43:16,571 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:43:18,884 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:43:18,893 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:43:18,900 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:49:37,466 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:49:40,597 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 432604 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:49:40,600 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:49:40,601 INFO r.b.u.r.SkillRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:49:43,379 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:49:43,805 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.411 seconds (process running for 7.055)
+2023-07-05 17:49:44,547 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:49:46,178 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:49:46,235 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:49:46,253 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:49:46,609 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:49:48,988 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:49:48,998 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:50:46,554 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:50:49,534 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 433081 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:50:49,535 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:50:49,536 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:50:51,976 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:50:52,413 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 3.029 seconds (process running for 6.594)
+2023-07-05 17:50:53,141 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:50:54,777 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:50:54,792 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:50:54,798 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:50:55,077 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:50:57,442 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:50:57,449 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:54:25,419 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:54:28,603 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 434568 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:54:28,605 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:54:28,606 INFO r.b.u.r.SkillRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:54:31,661 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.283 seconds (process running for 7.339)
+2023-07-05 17:54:32,505 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:54:34,189 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:54:34,200 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:54:34,207 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:54:34,414 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:54:36,810 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:54:36,821 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:55:59,469 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:56:02,570 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 435290 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:56:02,572 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:56:02,573 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:56:04,781 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 2.421 seconds (process running for 6.347)
+2023-07-05 17:56:05,478 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:56:07,245 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:56:07,256 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:56:07,264 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:56:07,513 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:56:09,894 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:56:09,907 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:56:44,541 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:56:47,605 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 435768 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:56:47,607 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:56:47,607 INFO r.b.u.r.SkillRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:56:49,715 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 2.279 seconds (process running for 5.855)
+2023-07-05 17:56:50,476 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:56:52,172 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:56:52,184 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:56:52,191 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:56:52,429 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:56:54,874 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:56:54,885 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:58:12,791 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:58:15,852 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Starting FollowerRepositoryTest using Java 17.0.5 with PID 436269 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:58:15,854 DEBUG r.b.u.r.FollowerRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:58:15,855 INFO r.b.u.r.FollowerRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:58:17,996 INFO r.b.u.r.FollowerRepositoryTest [Test worker] Started FollowerRepositoryTest in 2.32 seconds (process running for 5.899)
+2023-07-05 17:58:19,010 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:58:20,904 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:58:20,916 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:58:20,924 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:58:21,151 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:58:23,545 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 48
+2023-07-05 17:58:23,558 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme.skill" does not exist
+  Position: 13
+2023-07-05 17:59:02,052 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.SkillRepositoryTest
+2023-07-05 17:59:05,200 INFO r.b.u.r.SkillRepositoryTest [Test worker] Starting SkillRepositoryTest using Java 17.0.5 with PID 436956 (started by ascjke in /home/ascjke/Documents/IdeaProjects/skillbox-microservices-course/users)
+2023-07-05 17:59:05,202 DEBUG r.b.u.r.SkillRepositoryTest [Test worker] Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-05 17:59:05,203 INFO r.b.u.r.SkillRepositoryTest [Test worker] The following 1 profile is active: "application-test"
+2023-07-05 17:59:08,488 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [Test worker] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-05 17:59:08,984 INFO r.b.u.r.SkillRepositoryTest [Test worker] Started SkillRepositoryTest in 3.944 seconds (process running for 7.804)
+2023-07-05 17:59:10,016 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.UserRepositoryTest
+2023-07-05 17:59:11,918 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:59:11,993 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 21
+2023-07-05 17:59:12,003 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:59:12,233 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration ru.borisov.users.UsersApplication for test class ru.borisov.users.repository.FollowerRepositoryTest
+2023-07-05 17:59:14,610 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
+2023-07-05 17:59:14,617 ERROR o.h.e.j.s.SqlExceptionHelper [Test worker] ERROR: relation "users_scheme._user" does not exist
+  Position: 13
