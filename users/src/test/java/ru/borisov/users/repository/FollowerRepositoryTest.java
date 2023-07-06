@@ -2,7 +2,6 @@ package ru.borisov.users.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.borisov.users.DatabaseTestContainer;
 import ru.borisov.users.model.Follower;
 import ru.borisov.users.model.User;
@@ -13,15 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class FollowerRepositoryTest extends DatabaseTestContainer {
 
-    @Autowired
-    private FollowerRepository followerRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
     private User to;
     private User from;
-    private User other;
 
     @BeforeEach
     void setUp() {

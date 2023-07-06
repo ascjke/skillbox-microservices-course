@@ -1,7 +1,6 @@
 package ru.borisov.users.repository;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.borisov.users.DatabaseTestContainer;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.SkillType;
@@ -11,10 +10,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SkillRepositoryTest extends DatabaseTestContainer {
-
-    @Autowired
-    private SkillRepository skillRepository;
-
 
     @Test
     void findByTitleIgnoreCase_shouldReturnSkill_whenSkillExist() {

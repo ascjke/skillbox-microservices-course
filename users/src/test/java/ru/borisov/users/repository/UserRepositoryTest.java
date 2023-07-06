@@ -1,7 +1,6 @@
 package ru.borisov.users.repository;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.borisov.users.DatabaseTestContainer;
 import ru.borisov.users.model.User;
 
@@ -9,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserRepositoryTest extends DatabaseTestContainer {
-
-    @Autowired
-    private UserRepository userRepository;
-
 
     @Test
     void existsByUsername_shouldReturnTrue_wenUserExists() {

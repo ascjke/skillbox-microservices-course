@@ -33,7 +33,12 @@
             <AppenderRef ref="LogToConsole"/>
         </Logger>
 
-        <Logger name="org.flywaydb" level="info" additivity="false">
+        <Logger name="org.liquibase" level="info" additivity="false">
+            <AppenderRef ref="LogToRollingRandomAccessFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+
+        <Logger name="net.lbruun.springboot" level="info" additivity="false">
             <AppenderRef ref="LogToRollingRandomAccessFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Logger>

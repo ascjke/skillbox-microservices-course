@@ -4,28 +4,30 @@ import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import ru.borisov.users.repository.FollowerRepository;
+import ru.borisov.users.repository.SkillRepository;
+import ru.borisov.users.repository.UserRepository;
 
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+//@DataJpaTest
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest
 @AutoConfigureTestDatabase(replace = NONE)
 @Testcontainers
-@ActiveProfiles("application-test")
 public class DatabaseTestContainer {
 
     private static final String DATABASE_NAME = "users";
     private static int containerPort = 5432;
     private static int localPort = 5440;
 
-    @Container
     private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:15-alpine")
             .withDatabaseName(DATABASE_NAME)
             .withUsername("postgres")
@@ -33,19 +35,22 @@ public class DatabaseTestContainer {
             .withExposedPorts(containerPort)
             .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
                     new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
-            .withReuse(true);
+            ));
+
+    @Autowired
+    protected SkillRepository skillRepository;
+
+    @Autowired
+    protected FollowerRepository followerRepository;
+
+    @Autowired
+    protected UserRepository userRepository;
 
     @DynamicPropertySource
     static void datasourceProps(final DynamicPropertyRegistry registry) {
+        postgreSQLContainer.start();
         registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
         registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
         registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
-        registry.add("spring.datasource.driver-class-name", () -> "org.postgresql.Driver");
-
-        registry.add("spring.jpa.properties.hibernate.default_schema", () -> "users_scheme");
-        registry.add("spring.liquibase.enabled", () -> true);
-        registry.add("spring.liquibase.default-schema", () -> "users_scheme");
     }
-
 }

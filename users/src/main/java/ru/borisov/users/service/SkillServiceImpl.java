@@ -12,6 +12,7 @@ import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.SkillRepository;
 import ru.borisov.users.repository.UserRepository;
+import ru.borisov.users.util.ValidationUtils;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class SkillServiceImpl implements SkillService {
 
     private final UserRepository userRepository;
     private final SkillRepository skillRepository;
+    private final ValidationUtils validationUtils;
 
 
     @Override
@@ -30,6 +32,7 @@ public class SkillServiceImpl implements SkillService {
     public Skill addSkillToUser(AddSkillRequest request, UUID id) {
 
         log.info("Запрос на добавление навыка от пользователя c id={}. Тело запроса: {} ", id::toString, request::toString);
+        validationUtils.validateRequest(request);
         User user = getUserById(id);
         Skill skill;
         Optional<Skill> skillOptional = skillRepository.findByTitleIgnoreCase(request.getTitle());

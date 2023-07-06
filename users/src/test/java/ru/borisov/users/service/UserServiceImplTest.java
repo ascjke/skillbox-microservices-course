@@ -22,6 +22,7 @@ import ru.borisov.users.util.ValidationUtils;
 import java.time.LocalDate;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -102,11 +103,11 @@ class UserServiceImplTest {
         User result = userService.registerUser(registerUserRequest);
 
         //then
-        Assertions.assertEquals(savedUser, result);
+        assertEquals(savedUser, result);
     }
 
     @Test
-    void createUser_shouldThrow_whenLoginIsBusy() {
+    void createUser_shouldThrowException_whenLoginIsBusy() {
         // given
         when(userRepository.existsByUsername("ascjke")).thenReturn(true);
         RegisterUserRequest registerUserRequest = RegisterUserRequest.builder()
@@ -155,19 +156,19 @@ class UserServiceImplTest {
                 .phone("89141002304567")
                 .build();
 
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
-        Mockito.when(userRepository.save(updatedUser)).thenReturn(updatedUser);
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
         // when
         User result = userService.updateUserInfo(updateUserInfoRequest, savedUserId);
 
         // then
         verify(userRepository, times(1)).save(updatedUser);
-        Assertions.assertEquals(updatedUser, result);
+        assertEquals(updatedUser, result);
     }
 
     @Test
-    void updateUserInfo_noChanges_shouldReturnSameUser() {
+    void updateUserInfo_shouldNotCallDatabase_whenInfoIsSame() {
         // given
         UpdateUserInfoRequest updateUserInfoRequest = UpdateUserInfoRequest.builder()
                 .lastName("Иванов")
@@ -182,35 +183,36 @@ class UserServiceImplTest {
                 .build();
 
 
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
 
         // when
         User result = userService.updateUserInfo(updateUserInfoRequest, savedUserId);
 
         // then
-        verify(userRepository, Mockito.times(0)).save(Mockito.any(User.class));
-        Assertions.assertEquals(savedUser, result);
+        verify(userRepository, Mockito.times(0)).save(any(User.class));
+        assertEquals(savedUser, result);
     }
 
     @Test
-    void getUserById_existingUser_shouldReturnUser() {
+    void getUserById_shouldReturnUser_whenUserExists() {
         // given
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
 
         // when
         User result = userService.getUserById(savedUserId);
 
         // then
-        Assertions.assertEquals(savedUser, result);
+        assertEquals(savedUser, result);
     }
 
     @Test
-    void getUserById_nonExistingUser_shouldThrowException() {
+    void getUserById_shouldThrowException_whenUserNotExist() {
         // given
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.empty());
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.empty());
 
-        // when / then
-        Assertions.assertThrows(CommonException.class, () -> {
+        // then
+        assertThrows(CommonException.class, () -> {
+            // when
             userService.getUserById(savedUserId);
         });
     }
@@ -219,19 +221,19 @@ class UserServiceImplTest {
     void getAllUsers_shouldReturnListOfUsers() {
         // given
         List<User> users = List.of(savedUser);
-        Mockito.when(userRepository.findAll()).thenReturn(users);
+        when(userRepository.findAll()).thenReturn(users);
 
         // when
         List<User> result = userService.getAllUsers();
 
         // then
-        Assertions.assertEquals(users, result);
+        assertEquals(users, result);
     }
 
     @Test
-    void removeUserById_existingUser_shouldRemoveUser() {
+    void removeUserById_shouldRemoveUser_whenUserExists() {
         // given
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
         doNothing().when(userRepository).delete(savedUser);
 
         // when
@@ -239,41 +241,41 @@ class UserServiceImplTest {
 
         // then
         Assertions.assertTrue(response.success());
-        Assertions.assertEquals("Пользователь " + savedUser.getUsername() + " успешно удален!", response.message());
-        Mockito.verify(userRepository, Mockito.times(1)).delete(savedUser);
+        assertEquals("Пользователь " + savedUser.getUsername() + " успешно удален!", response.message());
+        verify(userRepository, Mockito.times(1)).delete(savedUser);
     }
 
     @Test
-    void getUserFollowers() {
+    void getUserFollowers_shouldReturnFollowers_whenTheyExist() {
         // given
         savedUser.getFollowers().add(Follower.builder()
                 .from(user)
                 .to(savedUser)
                 .build());
 
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
 
         // when
         Set<User> result = userService.getUserFollowers(savedUserId);
 
         // then
-        Assertions.assertEquals(Set.of(user), result);
+        assertEquals(Set.of(user), result);
     }
 
     @Test
-    void getUserFollowing() {
+    void getUserFollowing_shouldReturnFollowing_whenTheyExist() {
         // given
         savedUser.getFollowing().add(Follower.builder()
                 .from(savedUser)
                 .to(user)
                 .build());
 
-        Mockito.when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
+        when(userRepository.findById(savedUserId)).thenReturn(Optional.of(savedUser));
 
         // when
         Set<User> result = userService.getUserFollowing(savedUserId);
 
         // then
-        Assertions.assertEquals(Set.of(user), result);
+        assertEquals(Set.of(user), result);
     }
 }

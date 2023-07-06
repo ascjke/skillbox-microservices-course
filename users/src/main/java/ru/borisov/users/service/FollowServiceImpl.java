@@ -25,10 +25,10 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     @Transactional
-    public void follow(UUID currentUserId, UUID followingUserId) {
+    public void follow(UUID userId, UUID followingUserId) {
 
-        log.info("Пользователь с id={} отправил запрос на подписку пользователю {}", currentUserId::toString, followingUserId::toString);
-        User from = userService.getUserById(currentUserId);
+        log.info("Пользователь с id={} отправил запрос на подписку пользователю {}", userId::toString, followingUserId::toString);
+        User from = userService.getUserById(userId);
         User to = userService.getUserById(followingUserId);
 
         if (followerRepository.findByFromAndTo(from, to).isPresent()) {
