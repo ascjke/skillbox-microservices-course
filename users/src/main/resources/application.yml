@@ -1,14 +1,14 @@
 server:
-  port: 8082
-
+  port: 8080
+  ip: localhost
 
 spring:
   application:
     name: users-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/users
+    url: jdbc:postgresql://postgres:5432/users
     username: postgres
-    password: andreevich
+    password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -41,10 +41,9 @@ spring:
 log4j2:
   contextSelector: org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
 
-server_ip: ${SERVER_IP:localhost}
-
 jwt:
   auth:
     converter:
       resource-id: users-api
       principal-attribute: preferred_username
+

@@ -65,7 +65,7 @@ public class SkillServiceImpl implements SkillService {
         Skill skill = skillRepository.findById(skillId)
                 .orElseThrow(() -> new CommonException(Code.SKILL_NOT_FOUND,
                         "Навыка с id=" + skillId + " не существует!",
-                        HttpStatus.BAD_REQUEST));
+                        HttpStatus.NOT_FOUND));
 
         user.getSkills().remove(skill);
         userRepository.save(user);
@@ -77,6 +77,6 @@ public class SkillServiceImpl implements SkillService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new CommonException(Code.USER_NOT_FOUND,
                         "Пользователя с id=" + id + " не существует!",
-                        HttpStatus.BAD_REQUEST));
+                        HttpStatus.NOT_FOUND));
     }
 }

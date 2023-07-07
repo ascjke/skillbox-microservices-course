@@ -19,7 +19,7 @@ public class OpenAPIConfig {
 
     @Value("${server.port}")
     private int port;
-    @Value("${server_ip}")
+    @Value("${server.ip}")
     private String ip;
 
 
@@ -31,20 +31,16 @@ public class OpenAPIConfig {
 
         return new OpenAPI()
                 .info(new Info().title("Users service API")
-                        .version("0.0.1-SNAPSHOT")
+                        .version("1.0.0")
                         .description("Documentation of Users service API")
                         .license(new License().name("Apache 2.0")
                                 .url("http://springdoc.org"))
-                        .contact(new Contact().name("RCIT")
-                                .url("https://www.rcitsakha.ru")
-                                .email("borisov.za@rcitsakha.ru")))
+                        .contact(new Contact().name("Developer")
+                                .email("zakhar.borisov@mail.ru")))
                 .servers(List.of(
                         new Server()
                                 .url(url)
-                                .description("Server address"),
-                        new Server()
-                                .url("http://10.50.50.99:8080")
-                                .description("Address for frontend developer")
+                                .description("Server address")
                 ))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(

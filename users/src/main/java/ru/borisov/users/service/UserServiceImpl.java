@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(uuid)
                 .orElseThrow(() -> new CommonException(Code.USER_NOT_FOUND,
                         "Пользователя с id=" + uuid + " не существует!",
-                        HttpStatus.BAD_REQUEST));
+                        HttpStatus.NOT_FOUND));
     }
 
 

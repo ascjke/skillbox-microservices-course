@@ -26,7 +26,7 @@ public class DatabaseTestContainer {
 
     private static final String DATABASE_NAME = "users";
     private static int containerPort = 5432;
-    private static int localPort = 5440;
+    private static int localPort = 5434;
 
     private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:15-alpine")
             .withDatabaseName(DATABASE_NAME)

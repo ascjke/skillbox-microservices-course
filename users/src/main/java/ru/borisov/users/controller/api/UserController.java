@@ -84,10 +84,9 @@ public class UserController {
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
                             content = @Content(schema = @Schema(implementation = Skill.class))),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND"),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "BAD_REQUEST")
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
-    public ResponseEntity<Response> addSkillToUser(
+    public ResponseEntity<Response> removeSkillFromUser(
             @PathVariable UUID id,
             @PathVariable UUID skillId) {
 
@@ -130,7 +129,8 @@ public class UserController {
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
                             content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "CONFLICT")
             })
     public ResponseEntity<Response> unfollow(
             @PathVariable UUID id,
@@ -141,7 +141,7 @@ public class UserController {
         return new ResponseEntity<>(SuccessResponse.builder()
                 .data(ApiResponse.builder()
                         .success(true)
-                        .message("Вы отписалсиь от пользователя")
+                        .message("Вы отписались от пользователя")
                         .build())
                 .build(), HttpStatus.OK);
     }
@@ -209,7 +209,8 @@ public class UserController {
     @Operation(summary = "Удалить профиль пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = ApiResponse.class)))
+                            content = @Content(schema = @Schema(implementation = ApiResponse.class))),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
     public ResponseEntity<Response> removeUserById(@PathVariable UUID id) {
 
