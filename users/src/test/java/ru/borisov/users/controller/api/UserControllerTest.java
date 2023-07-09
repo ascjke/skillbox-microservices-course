@@ -52,7 +52,7 @@ class UserControllerTest extends DatabaseTestContainer {
                         .lastName("Иванов")
                         .firstName("Иван")
                         .middleName("Иванович")
-                        .male(Male.MALE)
+                        .gender(Gender.MALE)
                         .birthDate(LocalDate.of(1990, 6, 23))
                         .city("Якутск")
                         .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -70,7 +70,7 @@ class UserControllerTest extends DatabaseTestContainer {
                         .lastName("Иванов2")
                         .firstName("Иван2")
                         .middleName("Иванович2")
-                        .male(Male.MALE)
+                        .gender(Gender.MALE)
                         .birthDate(LocalDate.of(1990, 6, 23))
                         .city("Якутск")
                         .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -135,7 +135,7 @@ class UserControllerTest extends DatabaseTestContainer {
                   "lastName": "NewLastName",
                   "firstName": "NewFirstName",
                   "middleName": "NewMiddleName",
-                  "male": "MALE",
+                  "gender": "MALE",
                   "birthDate": "1990-01-01",
                   "city": "NewCity",
                   "profileImage": "https://example.com/profile.jpg",
@@ -157,7 +157,7 @@ class UserControllerTest extends DatabaseTestContainer {
         assertEquals("NewLastName", updatedUser.getLastName());
         assertEquals("NewFirstName", updatedUser.getFirstName());
         assertEquals("NewMiddleName", updatedUser.getMiddleName());
-        assertEquals(Male.MALE, updatedUser.getMale());
+        assertEquals(Gender.MALE, updatedUser.getGender());
         assertEquals(LocalDate.of(1990, 1, 1), updatedUser.getBirthDate());
         assertEquals("NewCity", updatedUser.getCity());
         assertEquals("https://example.com/profile.jpg", updatedUser.getProfileImage());
@@ -364,10 +364,10 @@ class UserControllerTest extends DatabaseTestContainer {
                           }
                         }
                         """));
-        Follower follower = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
-        assertNotNull(follower);
-        assertEquals(follower.getFrom(), user);
-        assertEquals(follower.getTo(), followingUser);
+        Subscription subscription = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
+        assertNotNull(subscription);
+        assertEquals(subscription.getFrom(), user);
+        assertEquals(subscription.getTo(), followingUser);
     }
 
     @Test
@@ -397,11 +397,11 @@ class UserControllerTest extends DatabaseTestContainer {
         // given
         user = userRepository.save(user);
         followingUser = userRepository.save(followingUser);
-        Follower follower = Follower.builder()
+        Subscription subscription = Subscription.builder()
                 .from(user)
                 .to(followingUser)
                 .build();
-        followerRepository.save(follower);
+        followerRepository.save(subscription);
 
         // when
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
@@ -424,11 +424,11 @@ class UserControllerTest extends DatabaseTestContainer {
         // given
         user = userRepository.save(user);
         followingUser = userRepository.save(followingUser);
-        Follower follower = Follower.builder()
+        Subscription subscription = Subscription.builder()
                 .from(user)
                 .to(followingUser)
                 .build();
-        followerRepository.save(follower);
+        followerRepository.save(subscription);
 
 
         // when
@@ -445,8 +445,8 @@ class UserControllerTest extends DatabaseTestContainer {
                           }
                         }
                         """));
-        follower = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
-        assertNull(follower);
+        subscription = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
+        assertNull(subscription);
     }
 
     @Test
@@ -564,21 +564,21 @@ class UserControllerTest extends DatabaseTestContainer {
         follower1 = userRepository.save(follower1);
         follower2 = userRepository.save(follower2);
 
-        Follower _follower1 = Follower.builder()
+        Subscription _subscription1 = Subscription.builder()
                 .from(follower1)
                 .to(user)
                 .build();
-        Follower _follower2 = Follower.builder()
+        Subscription _subscription2 = Subscription.builder()
                 .from(follower2)
                 .to(user)
                 .build();
-        _follower1 = followerRepository.save(_follower1);
-        _follower2 = followerRepository.save(_follower2);
+        _subscription1 = followerRepository.save(_subscription1);
+        _subscription2 = followerRepository.save(_subscription2);
 
 
         // Add the followers to the user's followers list
-        user.getFollowers().add(_follower1);
-        user.getFollowers().add(_follower2);
+        user.getFollowers().add(_subscription1);
+        user.getFollowers().add(_subscription2);
 
         // Save the user to the repository
         user = userRepository.save(user);
@@ -676,11 +676,11 @@ class UserControllerTest extends DatabaseTestContainer {
         following1 = userRepository.save(following1);
         following2 = userRepository.save(following2);
 
-        Follower _following1 = Follower.builder()
+        Subscription _following1 = Subscription.builder()
                 .from(user)
                 .to(following1)
                 .build();
-        Follower _following2 = Follower.builder()
+        Subscription _following2 = Subscription.builder()
                 .from(user)
                 .to(following2)
                 .build();

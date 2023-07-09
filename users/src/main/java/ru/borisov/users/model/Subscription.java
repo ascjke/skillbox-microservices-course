@@ -16,7 +16,7 @@ import java.util.UUID;
         uniqueConstraints =
         @UniqueConstraint(columnNames = {"from_user_fk", "to_user_fk"})
 )
-public class Follower {
+public class Subscription {
 
     @Id
     @Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")

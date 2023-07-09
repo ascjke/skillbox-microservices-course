@@ -16,7 +16,7 @@ CREATE INDEX idx_btree_user_gender_city
 
 -- Indexes for FK
 CREATE INDEX idx_hash_follower_user_id
-    ON users_scheme.follower USING hash(user_id);
+    ON users_scheme.subscription USING hash(user_id);
 
 CREATE INDEX idx_hash_following_user_id
     ON users_scheme.following USING hash(user_id);

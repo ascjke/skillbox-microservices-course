@@ -4,11 +4,11 @@ databaseChangeLog:
       author: zakhar
       changes:
         - createIndex:
-            indexName: idx_hash_user_male
+            indexName: idx_hash_user_gedner
             tableName: _user
             columns:
               - column:
-                  name: male
+                  name: gender
             indexType: hash
 
   - changeSet:
@@ -65,8 +65,8 @@ databaseChangeLog:
       author: zakhar
       changes:
         - createIndex:
-            indexName: idx_hash_follower_from_user_fk
-            tableName: follower
+            indexName: idx_hash_subscription_from_user_fk
+            tableName: subscription
             columns:
               - column:
                   name: from_user_fk
@@ -77,8 +77,8 @@ databaseChangeLog:
       author: zakhar
       changes:
         - createIndex:
-            indexName: idx_hash_following_to_user_fk
-            tableName: follower
+            indexName: idx_hash_subscription_to_user_fk
+            tableName: subscription
             columns:
               - column:
                   name: to_user_fk

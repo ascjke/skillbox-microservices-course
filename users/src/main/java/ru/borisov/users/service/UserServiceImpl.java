@@ -11,7 +11,7 @@ import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.error.Code;
-import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Subscription;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.util.ValidationUtils;
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(request.getLastName());
         user.setFirstName(request.getFirstName());
         user.setMiddleName(request.getMiddleName());
-        user.setMale(request.getMale());
+        user.setGender(request.getGender());
         user.setBirthDate(request.getBirthDate());
         user.setCity(request.getCity());
         user.setProfileImage(request.getProfileImage());
@@ -115,14 +115,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public Set<User> getUserFollowers(UUID uuid) {
         return getUserById(uuid).getFollowers().stream()
-                .map(Follower::getFrom)
+                .map(Subscription::getFrom)
                 .collect(Collectors.toSet());
     }
 
     @Override
     public Set<User> getUserFollowing(UUID uuid) {
         return getUserById(uuid).getFollowing().stream()
-                .map(Follower::getTo)
+                .map(Subscription::getTo)
                 .collect(Collectors.toSet());
     }
 

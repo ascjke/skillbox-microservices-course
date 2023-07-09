@@ -13,7 +13,7 @@ import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.controller.response.Response;
 import ru.borisov.users.controller.response.SuccessResponse;
-import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Subscription;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
 import ru.borisov.users.service.FollowService;
@@ -166,7 +166,7 @@ public class UserController {
     @Operation(summary = "Подписчики пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = Follower[].class))),
+                            content = @Content(schema = @Schema(implementation = Subscription[].class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
     public ResponseEntity<Response> getUserFollowers(@PathVariable UUID id) {
@@ -180,7 +180,7 @@ public class UserController {
     @Operation(summary = "Подписки пользователя",
             responses = {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK",
-                            content = @Content(schema = @Schema(implementation = Follower[].class))),
+                            content = @Content(schema = @Schema(implementation = Subscription[].class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "NOT_FOUND")
             })
     public ResponseEntity<Response> getUserFollowing(@PathVariable UUID id) {

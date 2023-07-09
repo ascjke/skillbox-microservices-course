@@ -1,7 +1,6 @@
 package ru.borisov.users.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
@@ -50,7 +49,7 @@ public class User {
     private String middleName;
 
     @Enumerated(EnumType.STRING)
-    private Male male;
+    private Gender gender;
 
     private LocalDate birthDate;
     private String city;
@@ -75,13 +74,13 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Follower> followers;
+    private Set<Subscription> followers;
 
     @OneToMany(mappedBy = "from",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Follower> following;
+    private Set<Subscription> following;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -109,7 +108,7 @@ public class User {
         if (!Objects.equals(request.getMiddleName(), this.middleName)) {
             return true;
         }
-        if (!Objects.equals(request.getMale(), this.male)) {
+        if (!Objects.equals(request.getGender(), this.gender)) {
             return true;
         }
         if (!Objects.equals(request.getBirthDate(), this.birthDate)) {

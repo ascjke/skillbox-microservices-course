@@ -1,14 +1,14 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
   ip: localhost
 
 spring:
   application:
     name: users-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/users
-    username: postgres
-    password: password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/users}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:andreevich}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

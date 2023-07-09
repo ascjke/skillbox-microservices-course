@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import ru.borisov.users.exception.CommonException;
-import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Subscription;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.FollowerRepository;
 
@@ -72,7 +72,7 @@ class FollowServiceImplTest {
         followService.follow(userId, followingUserId);
 
         // then
-        verify(followerRepository, Mockito.times(1)).save(any(Follower.class));
+        verify(followerRepository, Mockito.times(1)).save(any(Subscription.class));
     }
 
     @Test
@@ -81,14 +81,14 @@ class FollowServiceImplTest {
         // given
         when(userService.getUserById(userId)).thenReturn(from);
         when(userService.getUserById(followingUserId)).thenReturn(to);
-        when(followerRepository.findByFromAndTo(from, to)).thenReturn(Optional.of(new Follower()));
+        when(followerRepository.findByFromAndTo(from, to)).thenReturn(Optional.of(new Subscription()));
 
         // then
         assertThrows(CommonException.class, () -> {
             // when
             followService.follow(userId, followingUserId);
         });
-        verify(followerRepository, never()).save(any(Follower.class));
+        verify(followerRepository, never()).save(any(Subscription.class));
     }
 
     @Test
@@ -97,13 +97,13 @@ class FollowServiceImplTest {
         // given
         when(userService.getUserById(userId)).thenReturn(from);
         when(userService.getUserById(followingUserId)).thenReturn(to);
-        when(followerRepository.findByFromAndTo(from, to)).thenReturn(Optional.of(new Follower()));
+        when(followerRepository.findByFromAndTo(from, to)).thenReturn(Optional.of(new Subscription()));
 
         // when
         followService.unfollow(userId, followingUserId);
 
         // then
-        verify(followerRepository, times(1)).delete(any(Follower.class));
+        verify(followerRepository, times(1)).delete(any(Subscription.class));
     }
 
     @Test
@@ -118,6 +118,6 @@ class FollowServiceImplTest {
             // when
             followService.unfollow(userId, followingUserId);
         });
-        verify(followerRepository, never()).delete(any(Follower.class));
+        verify(followerRepository, never()).delete(any(Subscription.class));
     }
 }

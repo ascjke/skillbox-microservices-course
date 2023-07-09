@@ -3,14 +3,14 @@ package ru.borisov.users.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.borisov.users.DatabaseTestContainer;
-import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Subscription;
 import ru.borisov.users.model.User;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class FollowerRepositoryTest extends DatabaseTestContainer {
+class SubscriptionRepositoryTest extends DatabaseTestContainer {
 
     private User to;
     private User from;
@@ -36,14 +36,14 @@ class FollowerRepositoryTest extends DatabaseTestContainer {
         userRepository.save(to);
         userRepository.save(from);
 
-        Follower follower = Follower.builder()
+        Subscription subscription = Subscription.builder()
                 .from(from)
                 .to(to)
                 .build();
-        followerRepository.save(follower);
+        followerRepository.save(subscription);
 
         // when
-        Optional<Follower> followerOptional = followerRepository.findByFromAndTo(from, to);
+        Optional<Subscription> followerOptional = followerRepository.findByFromAndTo(from, to);
 
         // Then
         assertThat(followerOptional).isPresent();
@@ -62,14 +62,14 @@ class FollowerRepositoryTest extends DatabaseTestContainer {
         userRepository.save(from);
         userRepository.save(other);
 
-        Follower follower = Follower.builder()
+        Subscription subscription = Subscription.builder()
                 .from(from)
                 .to(to)
                 .build();
-        followerRepository.save(follower);
+        followerRepository.save(subscription);
 
         // when
-        Optional<Follower> followerOptional = followerRepository.findByFromAndTo(from, other);
+        Optional<Subscription> followerOptional = followerRepository.findByFromAndTo(from, other);
 
         // Then
         assertThat(followerOptional).isEmpty();

@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.exception.CommonException;
-import ru.borisov.users.model.Male;
+import ru.borisov.users.model.Gender;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.SkillType;
 import ru.borisov.users.model.User;
@@ -56,7 +56,7 @@ class SkillServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Якутск")
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")

@@ -23,7 +23,7 @@ create table _user
     primary key (id)
 );
 
-create table follower
+create table subscription
 (
     id      UUID default gen_random_uuid() not null,
     user_id UUID,
@@ -43,7 +43,7 @@ create table user_hard_skills
     hard_skills varchar(255)
 );
 
-alter table if exists follower
+alter table if exists subscription
     add constraint FKt2h2346u92r18ijwxfg6gir6k
         foreign key (user_id)
             references _user;

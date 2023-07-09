@@ -38,10 +38,10 @@ databaseChangeLog:
                   name: middle_name
                   type: varchar(64)
               - column:
-                  name: male
+                  name: gender
                   type: varchar(64)
                   constraints:
-                    checkConstraint: male in ('MALE','FEMALE')
+                    checkConstraint: gender in ('MALE','FEMALE')
               - column:
                   name: birth_date
                   type: date
@@ -75,7 +75,7 @@ databaseChangeLog:
       author: zakhar
       changes:
         - createTable:
-            tableName: follower
+            tableName: subscription
             columns:
               - column:
                   name: from_user_fk
@@ -146,13 +146,13 @@ databaseChangeLog:
       author: zakhar
       changes:
         - addForeignKeyConstraint:
-            baseTableName: follower
+            baseTableName: subscription
             baseColumnNames: from_user_fk
             referencedTableName: _user
             referencedColumnNames: id
             constraintName: FKj98cl1gy806hh83s4s16uwpqa
         - addForeignKeyConstraint:
-            baseTableName: follower
+            baseTableName: subscription
             baseColumnNames: to_user_fk
             referencedTableName: _user
             referencedColumnNames: id

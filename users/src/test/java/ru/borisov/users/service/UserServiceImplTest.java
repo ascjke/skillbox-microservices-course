@@ -12,8 +12,8 @@ import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.exception.CommonException;
-import ru.borisov.users.model.Follower;
-import ru.borisov.users.model.Male;
+import ru.borisov.users.model.Subscription;
+import ru.borisov.users.model.Gender;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.SkillRepository;
 import ru.borisov.users.repository.UserRepository;
@@ -58,7 +58,7 @@ class UserServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Якутск")
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -76,7 +76,7 @@ class UserServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Якутск")
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -132,7 +132,7 @@ class UserServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Москва") // поменялся город
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -148,7 +148,7 @@ class UserServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Москва") // поменялся город
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -174,7 +174,7 @@ class UserServiceImplTest {
                 .lastName("Иванов")
                 .firstName("Иван")
                 .middleName("Иванович")
-                .male(Male.MALE)
+                .gender(Gender.MALE)
                 .birthDate(LocalDate.of(1990, 6, 23))
                 .city("Якутск") // поменялся город
                 .profileImage("https://hsto.org/r/w780/getpro/habr/upload_files/67b/bbe/662/67bbbe662b5b94e1eaa8fc6ec22d2859.jpg")
@@ -248,7 +248,7 @@ class UserServiceImplTest {
     @Test
     void getUserFollowers_shouldReturnFollowers_whenTheyExist() {
         // given
-        savedUser.getFollowers().add(Follower.builder()
+        savedUser.getFollowers().add(Subscription.builder()
                 .from(user)
                 .to(savedUser)
                 .build());
@@ -265,7 +265,7 @@ class UserServiceImplTest {
     @Test
     void getUserFollowing_shouldReturnFollowing_whenTheyExist() {
         // given
-        savedUser.getFollowing().add(Follower.builder()
+        savedUser.getFollowing().add(Subscription.builder()
                 .from(savedUser)
                 .to(user)
                 .build());

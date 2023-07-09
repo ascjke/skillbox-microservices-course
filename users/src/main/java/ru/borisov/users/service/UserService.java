@@ -1,11 +1,8 @@
 package ru.borisov.users.service;
 
-import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
 import ru.borisov.users.controller.response.ApiResponse;
-import ru.borisov.users.model.Follower;
-import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.User;
 
 import java.util.List;

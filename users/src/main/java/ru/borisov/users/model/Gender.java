@@ -1,6 +1,6 @@
 package ru.borisov.users.model;
 
-public enum Male {
+public enum Gender {
 
     MALE,
     FEMALE

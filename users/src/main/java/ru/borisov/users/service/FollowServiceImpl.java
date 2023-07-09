@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.error.Code;
-import ru.borisov.users.model.Follower;
+import ru.borisov.users.model.Subscription;
 import ru.borisov.users.model.User;
 import ru.borisov.users.repository.FollowerRepository;
 
@@ -37,12 +37,12 @@ public class FollowServiceImpl implements FollowService {
                     HttpStatus.CONFLICT);
         }
 
-        Follower follower = Follower.builder()
+        Subscription subscription = Subscription.builder()
                 .from(from)
                 .to(to)
                 .build();
 
-        followerRepository.save(follower);
+        followerRepository.save(subscription);
 
 
         log.info("Пользователь {} подписался на пользователя {}", from::getUsername, to::getUsername);
@@ -55,7 +55,7 @@ public class FollowServiceImpl implements FollowService {
         User from = userService.getUserById(userId);
         User to = userService.getUserById(followingUserId);
 
-        Optional<Follower> followerOptional = followerRepository.findByFromAndTo(from, to);
+        Optional<Subscription> followerOptional = followerRepository.findByFromAndTo(from, to);
 
         if (followerOptional.isEmpty()) {
             throw new CommonException(Code.CONFLICT,

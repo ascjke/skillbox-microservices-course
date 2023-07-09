@@ -2,7 +2,7 @@ package ru.borisov.users.controller.request;
 
 import lombok.Builder;
 import lombok.Data;
-import ru.borisov.users.model.Male;
+import ru.borisov.users.model.Gender;
 
 import java.time.LocalDate;
 
@@ -13,7 +13,7 @@ public class UpdateUserInfoRequest {
     private String lastName;
     private String firstName;
     private String middleName;
-    private Male male;
+    private Gender gender;
     private LocalDate birthDate;
     private String city;
     private String profileImage;
