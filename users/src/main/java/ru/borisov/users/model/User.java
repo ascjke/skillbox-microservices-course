@@ -64,6 +64,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
+    @Builder.Default
     private Set<Skill> skills = new HashSet<>();
 
     private String phone;
@@ -74,13 +75,15 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Subscription> followers;
+    @Builder.Default
+    private Set<Subscription> followers = new HashSet<>();
 
     @OneToMany(mappedBy = "from",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Subscription> following;
+    @Builder.Default
+    private Set<Subscription> following = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;

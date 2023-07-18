@@ -1,13 +1,12 @@
 package ru.borisov.users.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 import ru.borisov.users.exception.error.Code;
 
-@Data
+@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
