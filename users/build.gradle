@@ -53,6 +53,7 @@ dependencies {
     testImplementation group: 'org.testcontainers', name: 'junit-jupiter', version: '1.18.3'
     testImplementation group: 'org.testcontainers', name: 'postgresql', version: '1.18.3'
     testRuntimeOnly 'org.liquibase:liquibase-core'
+    integTestImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock:4.0.4'
 }
 
 tasks.named('test') {

@@ -3,13 +3,13 @@ version: '3'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: users_postgres_db
+    container_name: users-postgres-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=users
     ports:
-      - 5433:5432
+      - 5432:5432
     volumes:
       - ./users-service-data:/var/lib/postgresql/data
     command: postgres -c shared_buffers=32MB -c temp_buffers=8MB
@@ -23,7 +23,7 @@ services:
 
   users:
     build: ./
-    container_name: users_service
+    container_name: users-service
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password

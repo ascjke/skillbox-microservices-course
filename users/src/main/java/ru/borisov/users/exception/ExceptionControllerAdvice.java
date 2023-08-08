@@ -30,6 +30,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(CommonException.class)
     public ResponseEntity<ErrorResponse> handleCommonException(CommonException ex) {
         log.error("common error: {}", ex::toString);
+        ex.printStackTrace(); // Вывод стека вызовов
         return new ResponseEntity<>(ErrorResponse.builder()
                 .error(Error.builder()
                         .code(ex.getCode())
