@@ -39,7 +39,7 @@ import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -70,7 +70,6 @@ class UserControllerTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private User user;
     private User followingUser;
-    private Skill skill;
 
     @BeforeEach
     void setUp() {
@@ -112,10 +111,6 @@ class UserControllerTest {
                         .followers(new HashSet<>())
                         .following(new HashSet<>())
                         .build();
-        skill = Skill.builder()
-                .title("java8")
-                .skillType(SkillType.HARD_SKILL)
-                .build();
     }
 
     @ParameterizedTest
@@ -272,62 +267,48 @@ class UserControllerTest {
                 .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())));
     }
 
-//    @Test
-//    void removeSkillFromUser_shouldReturn200_whenUserAndSkillExist() throws Exception {
-//
-//        // given
-//        user = userRepository.save(user);
-//        skill = skillRepository.save(skill);
-//        user.getSkills().add(skill);
-//        userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + user.getId() + "/removeSkill/" + skill.getId()));
-//
-//        // then
-//        resultActions
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                           "data":
-//                           {
-//                                "success": true,
-//                                "message": "Навык удален"
-//                           }
-//                        }
-//                        """));
-//
-//        // Check that the skill is removed from the user
-//        user = userRepository.findById(user.getId()).orElse(null);
-//        Skill finalSkill = skill;
-//        assertFalse(user.getSkills().stream().anyMatch(s -> s.getTitle().equals(finalSkill.getTitle())));
-//    }
+    @Test
+    void removeSkillFromUser_shouldReturn200_whenUserAndSkillExist() throws Exception {
 
-    //    @Test
-//    @Transactional
-//    void removeSkillFromUser_shouldReturn404_whenUserNotFound() throws Exception {
-//
-//        // given
-//        UUID nonExistingUserId = UUID.randomUUID();
-//        skill = skillRepository.save(skill);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + nonExistingUserId + "/removeSkill/" + skill.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(nonExistingUserId)));
-//    }
-//
+        // given
+        UUID skillId = UUID.randomUUID();
+        doNothing().when(skillService).removeSkillFromUser(user.getId(), skillId);
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .delete(USERS_URL + "/" + user.getId() + "/removeSkill/" + skillId));
+
+        // then
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$['data'].message", Matchers.equalTo("Навык удален")));
+    }
+
+    @Test
+    void removeSkillFromUser_shouldReturn404_whenUserNotFound() throws Exception {
+
+        // given
+        UUID skillId = UUID.randomUUID();
+        doThrow(CommonException.class).when(skillService).removeSkillFromUser(user.getId(), skillId);
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + user.getId() + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .delete(USERS_URL + "/" + user.getId() + "/removeSkill/" + skillId));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Пользователя с id=" +
+                        user.getId() + " не существует!")));
+    }
+
 //    @Test
 //    @Transactional
 //    void removeSkillFromUser_shouldReturn404_whenSkillNotFound() throws Exception {
