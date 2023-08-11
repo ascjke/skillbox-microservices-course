@@ -309,159 +309,131 @@ class UserControllerTest {
                         user.getId() + " не существует!")));
     }
 
-//    @Test
-//    @Transactional
-//    void removeSkillFromUser_shouldReturn404_whenSkillNotFound() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        UUID nonExistingSkillId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + user.getId() + "/removeSkill/" + nonExistingSkillId));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "SKILL_NOT_FOUND",
-//                            "message": "Навыка с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(nonExistingSkillId)));
-//    }
-//
-//    @Test
-//    @Transactional
-//    void follow_shouldReturn200_whenUsersExistAndNotFollowing() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        followingUser = userRepository.save(followingUser);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .put(USERS_URL + "/" + user.getId() + "/follow/" + followingUser.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": {
-//                            "success": true,
-//                            "message": "Вы успешно подписались"
-//                          }
-//                        }
-//                        """));
-//        Subscription subscription = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
-//        assertNotNull(subscription);
-//        assertEquals(subscription.getFrom(), user);
-//        assertEquals(subscription.getTo(), followingUser);
-//    }
-//
-//    @Test
-//    void follow_shouldReturn404_whenUserNotExist() throws Exception {
-//        // given
-//        UUID userId = UUID.randomUUID();
-//        UUID followingUserId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .put(USERS_URL + "/" + userId + "/follow/" + followingUserId));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(userId)));
-//    }
-//
-//    @Test
-//    void follow_shouldReturn409_whenAlreadyFollowing() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        followingUser = userRepository.save(followingUser);
-//        Subscription subscription = Subscription.builder()
-//                .from(user)
-//                .to(followingUser)
-//                .build();
-//        followerRepository.save(subscription);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .put(USERS_URL + "/" + user.getId() + "/follow/" + followingUser.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isConflict())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "CONFLICT",
-//                            "message": "Вы уже подписаны на этого пользователя!"
-//                          }
-//                        }
-//                        """));
-//    }
-//
-//    @Test
-//    void unfollow_shouldReturn200AndDeleteFollowerFromDb_whenUsersExistAndFollowing() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        followingUser = userRepository.save(followingUser);
-//        Subscription subscription = Subscription.builder()
-//                .from(user)
-//                .to(followingUser)
-//                .build();
-//        followerRepository.save(subscription);
-//
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + user.getId() + "/unfollow/" + followingUser.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": {
-//                            "success": true,
-//                            "message": "Вы отписались от пользователя"
-//                          }
-//                        }
-//                        """));
-//        subscription = followerRepository.findByFromAndTo(user, followingUser).orElse(null);
-//        assertNull(subscription);
-//    }
-//
-//    @Test
-//    void unfollow_shouldReturn404_whenUserNotExist() throws Exception {
-//        // given
-//        UUID userId = UUID.randomUUID();
-//        UUID followingUserId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + userId + "/unfollow/" + followingUserId));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(userId)));
-//    }
-//
-//
-//    @Test
+    @Test
+    void removeSkillFromUser_shouldReturn404_whenSkillNotFound() throws Exception {
+        // given
+        UUID nonExistingSkillId = UUID.randomUUID();
+        doThrow(CommonException.class).when(skillService).removeSkillFromUser(user.getId(), nonExistingSkillId);
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.SKILL_NOT_FOUND)
+                                .message("Навыка с id=" + nonExistingSkillId + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .delete(USERS_URL + "/" + user.getId() + "/removeSkill/" + nonExistingSkillId));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.SKILL_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Навыка с id=" +
+                        nonExistingSkillId + " не существует!")));
+    }
+
+    @Test
+    void follow_shouldReturn200_whenUsersExistAndNotFollowing() throws Exception {
+        // given
+        doNothing().when(followService).follow(user.getId(), followingUser.getId());
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .put(USERS_URL + "/" + user.getId() + "/follow/" + followingUser.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$['data'].message", Matchers.equalTo("Вы успешно подписались")));
+    }
+
+    @Test
+    void follow_shouldReturn404_whenUserNotExist() throws Exception {
+        // given
+        UUID followingUserId = UUID.randomUUID();
+        doThrow(CommonException.class).when(followService).follow(user.getId(), followingUserId);
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + followingUserId + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .put(USERS_URL + "/" + user.getId() + "/follow/" + followingUserId));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Пользователя с id=" +
+                        followingUserId + " не существует!")));
+    }
+
+    @Test
+    void follow_shouldReturn409_whenAlreadyFollowing() throws Exception {
+        // given
+        doThrow(CommonException.class).when(followService).follow(user.getId(), followingUser.getId());
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.CONFLICT)
+                                .message("Вы уже подписаны на этого пользователя!")
+                                .build())
+                        .build(), HttpStatus.CONFLICT));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .put(USERS_URL + "/" + user.getId() + "/follow/" + followingUser.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isConflict())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.CONFLICT.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Вы уже подписаны на этого пользователя!")));
+    }
+
+    @Test
+    void unfollow_shouldReturn200_whenUsersExistAndFollowing() throws Exception {
+        // given
+        doNothing().when(followService).unfollow(user.getId(), followingUser.getId());
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .delete(USERS_URL + "/" + user.getId() + "/unfollow/" + followingUser.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$['data'].message", Matchers.equalTo("Вы отписались от пользователя")));
+    }
+
+
+    @Test
+    void unfollow_shouldReturn404_whenUserNotExist() throws Exception {
+        // given
+        UUID followingUserId = UUID.randomUUID();
+        doThrow(CommonException.class).when(followService).unfollow(user.getId(), followingUserId);
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + followingUserId + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .delete(USERS_URL + "/" + user.getId() + "/unfollow/" + followingUserId));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Пользователя с id=" +
+                        followingUserId + " не существует!")));
+    }
+
+
+    //    @Test
 //    void unfollow_shouldReturn409_whenNotFollowing() throws Exception {
 //        // given
 //        user = userRepository.save(user);
