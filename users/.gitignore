@@ -38,4 +38,4 @@ out/
 
 ### Custom dirs ###
 users-service-data/
-logs/
+users/logs
