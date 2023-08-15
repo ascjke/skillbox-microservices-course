@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.borisov.users.controller.request.AddSkillRequest;
 import ru.borisov.users.controller.request.RegisterUserRequest;
 import ru.borisov.users.controller.request.UpdateUserInfoRequest;
+import ru.borisov.users.controller.response.ApiResponse;
 import ru.borisov.users.exception.CommonException;
 import ru.borisov.users.exception.ExceptionControllerAdvice;
 import ru.borisov.users.exception.error.Code;
@@ -29,14 +30,12 @@ import ru.borisov.users.model.Gender;
 import ru.borisov.users.model.Skill;
 import ru.borisov.users.model.SkillType;
 import ru.borisov.users.model.User;
-import ru.borisov.users.repository.UserRepository;
 import ru.borisov.users.service.FollowService;
 import ru.borisov.users.service.SkillService;
 import ru.borisov.users.service.UserServiceImpl;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
@@ -63,9 +62,6 @@ class UserControllerTest {
 
     @MockBean
     private FollowService followService;
-
-    @MockBean
-    private UserRepository userRepository;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private User user;
@@ -433,358 +429,186 @@ class UserControllerTest {
     }
 
 
-    //    @Test
-//    void unfollow_shouldReturn409_whenNotFollowing() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        followingUser = userRepository.save(followingUser);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .delete(USERS_URL + "/" + user.getId() + "/unfollow/" + followingUser.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isConflict())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "CONFLICT",
-//                            "message": "Вы не подписаны на этого пользователя!"
-//                          }
-//                        }
-//                        """));
-//    }
-//
-//    @Test
-//    void getUserById_shouldReturn200_whenUserExists() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + user.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": {
-//                            "id": "%s",
-//                            "username": "testUser",
-//                            "email": "test@mail.ru"
-//                          }
-//                        }
-//                        """.formatted(user.getId())));
-//    }
-//
-//    @Test
-//    void getUserById_shouldReturn404_whenUserNotExist() throws Exception {
-//        // given
-//        UUID userId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + userId));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(userId)));
-//    }
-//
-//    @Test
-//    @Transactional
-//    void getUserFollowers_shouldReturn200AndFollowers_whenUserExists() throws Exception {
-//
-//        // given
-//        user = userRepository.save(user);
-//        User follower1 = User.builder()
-//                .id(UUID.randomUUID())
-//                .username("follower1")
-//                .passwordHash("12345")
-//                .email("follower1@example.com")
-//                .following(new HashSet<>())
-//                .followers(new HashSet<>())
-//                .build();
-//        User follower2 = User.builder()
-//                .id(UUID.randomUUID())
-//                .username("follower2")
-//                .passwordHash("12345")
-//                .email("follower2@example.com")
-//                .following(new HashSet<>())
-//                .followers(new HashSet<>())
-//                .build();
-//
-//        // Save the followers to the repository
-//        follower1 = userRepository.save(follower1);
-//        follower2 = userRepository.save(follower2);
-//
-//        Subscription _subscription1 = Subscription.builder()
-//                .from(follower1)
-//                .to(user)
-//                .build();
-//        Subscription _subscription2 = Subscription.builder()
-//                .from(follower2)
-//                .to(user)
-//                .build();
-//        _subscription1 = followerRepository.save(_subscription1);
-//        _subscription2 = followerRepository.save(_subscription2);
-//
-//
-//        // Add the followers to the user's followers list
-//        user.getFollowers().add(_subscription1);
-//        user.getFollowers().add(_subscription2);
-//
-//        // Save the user to the repository
-//        user = userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + user.getId() + "/followers"));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": [
-//                            {
-//                              "id": "%s",
-//                              "username": "follower1",
-//                              "email": "follower1@example.com"
-//                            },
-//                            {
-//                              "id": "%s",
-//                              "username": "follower2",
-//                              "email": "follower2@example.com"
-//                            }
-//                          ]
-//                        }
-//                        """.formatted(follower1.getId(), follower2.getId())));
-//    }
-//
-//    @Test
-//    @Transactional
-//    void getUserFollowers_shouldReturn200AndEmptyData_whenThereAreNoFollowers() throws Exception {
-//
-//        // given
-//        user = userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + user.getId() + "/followers"));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": [
-//                          ]
-//                        }
-//                        """));
-//    }
-//
-//    @Test
-//    void getUserFollowers_shouldReturn404_whenUserNotExist() throws Exception {
-//        // given
-//        UUID userId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + userId + "/followers"));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(userId)));
-//    }
-//
-//    @Test
-//    @Transactional
-//    void getUserFollowing_shouldReturn200AndFollowing_whenUserExists() throws Exception {
-//
-//        // given
-//        user = userRepository.save(user);
-//        User following1 = User.builder()
-//                .id(UUID.randomUUID())
-//                .username("following1")
-//                .passwordHash("12345")
-//                .email("following1@example.com")
-//                .following(new HashSet<>())
-//                .followers(new HashSet<>())
-//                .build();
-//        User following2 = User.builder()
-//                .id(UUID.randomUUID())
-//                .username("following2")
-//                .passwordHash("12345")
-//                .email("following2@example.com")
-//                .following(new HashSet<>())
-//                .followers(new HashSet<>())
-//                .build();
-//
-//        // Save the followers to the repository
-//        following1 = userRepository.save(following1);
-//        following2 = userRepository.save(following2);
-//
-//        Subscription _following1 = Subscription.builder()
-//                .from(user)
-//                .to(following1)
-//                .build();
-//        Subscription _following2 = Subscription.builder()
-//                .from(user)
-//                .to(following2)
-//                .build();
-//        _following1 = followerRepository.save(_following1);
-//        _following2 = followerRepository.save(_following2);
-//
-//
-//        // Add the followers to the user's followers list
-//        user.getFollowing().add(_following1);
-//        user.getFollowing().add(_following2);
-//
-//        // Save the user to the repository
-//        user = userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + user.getId() + "/following"));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": [
-//                            {
-//                              "id": "%s",
-//                              "username": "following1",
-//                              "email": "following1@example.com"
-//                            },
-//                            {
-//                              "id": "%s",
-//                              "username": "following2",
-//                              "email": "following2@example.com"
-//                            }
-//                          ]
-//                        }
-//                        """.formatted(following1.getId(), following2.getId())));
-//    }
-//
-//    @Test
-//    void getUserFollowing_shouldReturn404_whenUserNotExist() throws Exception {
-//        // given
-//        UUID userId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-//                .get(USERS_URL + "/" + userId + "/following"));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(userId)));
-//    }
-//
-//    @Test
-//    void getAllUsers_shouldReturn200AndEmptyList_whenNoUsersExist() throws Exception {
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get(USERS_URL));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": []
-//                        }
-//                        """));
-//    }
-//
-//    @Test
-//    void getAllUsers_shouldReturn200AndUserList_whenUsersExist() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//        followingUser = userRepository.save(followingUser);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get(USERS_URL));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": [
-//                            {
-//                              "id": "%s",
-//                              "username": "%s",
-//                              "email": "%s"
-//                            },
-//                            {
-//                              "id": "%s",
-//                              "username": "%s",
-//                              "email": "%s"
-//                            }
-//                          ]
-//                        }
-//                        """.formatted(user.getId(), user.getUsername(), user.getEmail(),
-//                        followingUser.getId(), followingUser.getUsername(), followingUser.getEmail())));
-//    }
-//
-//    @Test
-//    void removeUserById_shouldReturn200_whenUserExists() throws Exception {
-//        // given
-//        user = userRepository.save(user);
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.delete(USERS_URL + "/" + user.getId()));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "data": {
-//                            "success": true,
-//                            "message": "Пользователь %s успешно удален!"
-//                          }
-//                        }
-//                        """.formatted(user.getUsername())));
-//    }
-//
-//    @Test
-//    void removeUserById_shouldReturn404_whenUserDoesNotExist() throws Exception {
-//        // given
-//        UUID nonExistentUserId = UUID.randomUUID();
-//
-//        // when
-//        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.delete(USERS_URL + "/" + nonExistentUserId));
-//
-//        // then
-//        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
-//                .andExpect(MockMvcResultMatchers.content().json("""
-//                        {
-//                          "error": {
-//                            "code": "USER_NOT_FOUND",
-//                            "message": "Пользователя с id=%s не существует!"
-//                          }
-//                        }
-//                        """.formatted(nonExistentUserId)));
-//    }
-//
+    @Test
+    void getUserById_shouldReturn200_whenUserExists() throws Exception {
+        // given
+        when(userService.getUserById(user.getId())).thenReturn(user);
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get(USERS_URL + "/" + user.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$['data'].username", Matchers.equalTo(user.getUsername())));
+    }
+
+    @Test
+    void getUserById_shouldReturn404_whenUserNotExist() throws Exception {
+        // given
+        doThrow(CommonException.class).when(userService).getUserById(user.getId());
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + user.getId() + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get(USERS_URL + "/" + user.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Пользователя с id=" +
+                        user.getId() + " не существует!")));
+    }
+
+    @Test
+    void getUserFollowers_shouldReturn200AndEmptyData_whenThereAreNoFollowers() throws Exception {
+        // given
+        when(userService.getUserFollowers(user.getId())).thenReturn(new HashSet<>());
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get(USERS_URL + "/" + user.getId() + "/followers"));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json("""
+                        {
+                          "data": [
+                          ]
+                        }
+                        """));
+    }
+
+    @Test
+    void getUserFollowers_shouldReturn404_whenUserNotExist() throws Exception {
+        // given
+        doThrow(CommonException.class).when(userService).getUserFollowers(user.getId());
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + user.getId() + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get(USERS_URL + "/" + user.getId() + "/followers"));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$['error'].code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$['error'].message", Matchers.equalTo("Пользователя с id=" +
+                        user.getId() + " не существует!")));
+    }
+
+    @Test
+    void getUserFollowing_shouldReturn200AndFollowing_whenUserExists() throws Exception {
+        // given
+        User following1 = User.builder()
+                .id(UUID.randomUUID())
+                .username("following1")
+                .passwordHash("12345")
+                .email("following1@example.com")
+                .following(new HashSet<>())
+                .followers(new HashSet<>())
+                .build();
+        User following2 = User.builder()
+                .id(UUID.randomUUID())
+                .username("following2")
+                .passwordHash("12345")
+                .email("following2@example.com")
+                .following(new HashSet<>())
+                .followers(new HashSet<>())
+                .build();
+        Set<User> following = Set.of(following1, following2);
+        when(userService.getUserFollowing(user.getId())).thenReturn(following);
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get(USERS_URL + "/" + user.getId() + "/following"));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.data.length()", Matchers.equalTo(following.size())))
+                .andExpect(jsonPath("$.data[*].username", Matchers.containsInAnyOrder(
+                        following1.getUsername(), following2.getUsername())));
+    }
+
+    @Test
+    void getAllUsers_shouldReturn200AndEmptyList_whenNoUsersExist() throws Exception {
+        List<User> users = new ArrayList<>();
+        when(userService.getAllUsers()).thenReturn(users);
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get(USERS_URL));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.data.length()", Matchers.equalTo(users.size())));
+    }
+
+    @Test
+    void getAllUsers_shouldReturn200AndUserList_whenUsersExist() throws Exception {
+        // given
+        List<User> users = List.of(user, followingUser);
+        when(userService.getAllUsers()).thenReturn(users);
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get(USERS_URL));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.data.length()", Matchers.equalTo(users.size())))
+                .andExpect(jsonPath("$.data.[0].username", Matchers.equalTo(user.getUsername())))
+                .andExpect(jsonPath("$.data.[1].username", Matchers.equalTo(followingUser.getUsername())));
+    }
+
+    @Test
+    void removeUserById_shouldReturn200_whenUserExists() throws Exception {
+        // given
+        when(userService.removeUserById(user.getId())).thenReturn(ApiResponse.builder()
+                .success(true)
+                .message("Пользователь " + user.getUsername() + " успешно удален!")
+                .build());
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.delete(USERS_URL + "/" + user.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.data.success", Matchers.equalTo(true)))
+                .andExpect(jsonPath("$.data.message", Matchers.equalTo("Пользователь " + user.getUsername() + " успешно удален!")));
+    }
+
+    @Test
+    void removeUserById_shouldReturn404_whenUserDoesNotExist() throws Exception {
+        // given
+        doThrow(CommonException.class).when(userService).removeUserById(user.getId());
+        when(exceptionControllerAdvice.handleCommonException(new CommonException())).thenReturn(
+                new ResponseEntity<>(ErrorResponse.builder()
+                        .error(Error.builder()
+                                .code(Code.USER_NOT_FOUND)
+                                .message("Пользователя с id=" + user.getId() + " не существует!")
+                                .build())
+                        .build(), HttpStatus.NOT_FOUND));
+
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.delete(USERS_URL + "/" + user.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(jsonPath("$.error.code", Matchers.equalTo(Code.USER_NOT_FOUND.toString())))
+                .andExpect(jsonPath("$.error.message", Matchers.equalTo("Пользователя с id=" + user.getId() + " не существует!")));
+    }
+
     private static Stream<RegisterUserRequest> validUserRequest() {
         return Stream.of(
                 RegisterUserRequest.builder() // Валидный запрос
