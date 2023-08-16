@@ -1,3 +1,5 @@
+#eval $(minikube docker-env) -- команда docker будет смотреть образы внутри minikube
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +18,7 @@ spec:
     spec:
       containers:
       - name: users-service
-        image: users-users:latest
+        image: ascjke/users-service:latest
         ports:
         - containerPort: 8080
 

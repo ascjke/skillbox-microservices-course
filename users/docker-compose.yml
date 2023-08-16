@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgres:
+  users-postgres-db:
     image: postgres:15-alpine
     container_name: users-postgres-db
     environment:
@@ -27,7 +27,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/users
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://users-postgres-db:5432/users
       - TZ=Asia/Yakutsk
       - JAVA_TOOL_OPTIONS=-XX:+UseG1GC -Xmx960m -Xms128m
     ports:
