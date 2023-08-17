@@ -10,7 +10,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: users-backend
+      app: users-backend # запускает 2 poda c меткой users-backend
   template:
     metadata:
       labels:
@@ -18,9 +18,12 @@ spec:
     spec:
       containers:
       - name: users-service
-        image: ascjke/users-service:latest
+        image: ascjke/users-service
         ports:
         - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:postgresql://postgres:5432/users
 
       - name: users-postgres-db
         image: postgres:15-alpine
@@ -35,8 +38,8 @@ metadata:
   name: users-backend-service
 spec:
   selector:
-    app: users-backend
+    app: users-backend # смотрит podы c меткой users-backend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
+      port: 80 # порт сервиса внутри кластера
+      targetPort: 8080 # внешний порт сервиса
