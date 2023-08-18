@@ -1,70 +1,85 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: postgres-config
-  namespace: default
-data:
-  postgres_user: admin
-  postgres_password: c1oudc0w
----
-
+# Define a 'Persistent Voulume Claim'(PVC) for Postgres Storage, dynamically provisioned by cluster
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pv-claim
+  name: postgres-pv-claim # name of PVC essential for identifying the storage data
+  labels:
+    app: postgres
+    tier: database
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce   #This specifies the mode of the claim that we are trying to create.
   resources:
     requests:
-      storage: 1Gi
+      storage: 1Gi    #This will tell kubernetes about the amount of space we are trying to claim.
 ---
 
-apiVersion: extensions/v1beta1
+# Configure 'Deployment' of postgres server
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: postgres-deployment
+  labels:
+    app: postgres
+    tier: database
 spec:
+  selector: # postgres Pod Should contain same labels
+    matchLabels:
+      app: postgres
+      tier: database
+  strategy:
+    type: Recreate
   template:
     metadata:
-      labels:
+      labels: # Must match 'Service' and 'Deployment' selectors
         app: postgres
+        tier: database
     spec:
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
       containers:
-        - image: postgres
+        - image: postgres:15-alpine # image from docker-hub
           name: postgres
           env:
             - name: POSTGRES_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_user
+              valueFrom :
+                secretKeyRef :
+                  name : postgres-secrets
+                  key :  username
+
             - name: POSTGRES_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_password
-            - name: PGDATA
-              value: /var/lib/postgresql/data/pgdata
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: password
+
+            - name: POSTGRES_DB # Setting Database Name from a 'ConfigMap'
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  dbName
           ports:
             - containerPort: 5432
               name: postgres
-          volumeMounts:
-            - name: postgres-storage
-              mountPath: /var/lib/postgresql/data
+          volumeMounts:        # Mounting voulume obtained from Persistent Volume Claim
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgres #This is the path in the container on which the mounting will take place.
+      volumes:
+        - name: postgres-persistent-storage # Obtaining 'volume' from PVC
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
 ---
 
+# Define a 'Service' To Expose mysql to Other Services
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: postgres  # DNS name
+  labels:
+    app: postgres
+    tier: database
 spec:
-  type: ClusterIP
   ports:
     - port: 5432
-  selector:
+      targetPort: 5432
+  selector:       # mysql Pod Should contain same labels
     app: postgres
+    tier: database

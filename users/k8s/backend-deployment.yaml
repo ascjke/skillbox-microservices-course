@@ -16,22 +16,40 @@ spec:
       labels:
         app: users-backend
     spec:
+      initContainers:
+        - name: liquibase
+          image: liquibase/liquibase:4.20.0
       containers:
       - name: users-service
         image: ascjke/users-service
         ports:
         - containerPort: 8080
         env:
-          - name: SPRING_DATASOURCE_URL
-            value: jdbc:postgresql://postgres:5432/users
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: db-config
+                key: host
 
-      - name: users-postgres-db
-        image: postgres:15-alpine
-        ports:
-        - containerPort: 5432
+          - name: DB_NAME  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: db-config
+                key: dbName
+
+          - name: DB_USERNAME  # Setting Database username from Secret
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: username
+
+          - name: DB_PASSWORD # Setting Database password from Secret
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: password
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -41,5 +59,8 @@ spec:
     app: users-backend # смотрит podы c меткой users-backend
   ports:
     - protocol: TCP
-      port: 80 # порт сервиса внутри кластера
+      port: 8080 # порт сервиса внутри кластера
       targetPort: 8080 # внешний порт сервиса
+
+# kubectl port-forward service/users-backend-service 8080:8080
+
