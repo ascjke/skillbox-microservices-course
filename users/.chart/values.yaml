@@ -4,11 +4,14 @@ apiHost: http://users-backend-service
 appHost: users-backend-prod.local
 namespace: &namespace prod
 config-filename: &config-filename users-backend-config
+
+
+
+
 postgres_host: "postgres-local-service"
 postgres_db: "users"
 postgres_user: "root"
 postgres_password: "12345"
-
 
 apps:
   postgres:
@@ -42,7 +45,7 @@ apps:
   users-service:
     appName: users-backend
     namespace: *namespace
-    replicasCount: 1
+    replicasCount: 2
     container:
       image: 'ascjke/users-service'
       version: latest

@@ -1,0 +1,19 @@
+namespace: &namespace dev
+appHost: users-backend-dev.local
+
+# Указываем только те параметры, которые могут отличаться от файла values.yaml
+apps:
+  postgres:
+    appName: postgres-local
+    namespace: *namespace
+    replicasCount: 1
+    container:
+      version: 15-alpine
+
+  users-service:
+    namespace: *namespace
+    replicasCount: 1
+    container:
+      version: latest
+
+# helm install users-dev -f values-test.yaml .

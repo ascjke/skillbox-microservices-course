@@ -8,6 +8,7 @@ metadata:
     app: {{ .appName }}
 spec:
   replicas: {{ .replicasCount }}
+  progressDeadlineSeconds: 120
   selector:
     matchLabels:
       app: {{ .appName }}
